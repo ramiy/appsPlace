@@ -1,5 +1,6 @@
 .keep-app {
 	background-color: #e8e8e8;
+	padding: 0 1em;
 }
 
 .keep-app input {
@@ -11,8 +12,22 @@
 }
 
 .keep-app .keep-item {
-	float: left;
-	margin: 1em;
-	padding: 1em;
-	background-color: #fff;
+	position: relative;
+	transition: 0.3s;
+}
+
+.keep-app .keep-item:hover {
+	box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
+}
+
+.keep-item-actions {
+	/* position: absolute;
+	top: 0;
+	right: 0; */
+	visibility: hidden;
+	padding-top: 0.5em;
+}
+
+.keep-app .keep-item:hover .keep-item-actions {
+	visibility: visible;
 }
