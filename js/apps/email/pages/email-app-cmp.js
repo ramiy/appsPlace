@@ -1,12 +1,16 @@
 export default {
-    template: `
+	template: `
+		<section class="email-app">
+
+        
+        </section>
     
     
     
     `,
     data() {
         return {
-            
+
         }
     }
 }
