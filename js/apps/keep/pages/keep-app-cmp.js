@@ -30,6 +30,12 @@ export default {
 					isSticky: true,
 				},
 				{
+					keepType: 'keep-text',
+					data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
+					isSticky: false,
+				},
+
+				{
 					keepType: 'keep-image',
 					data: { src: 'http://placehold.it/300x400?text=Image' },
 					isSticky: true,
@@ -64,6 +70,17 @@ export default {
 					data: { src: 'https://yesno.wtf/assets/yes/2-5df1b403f2654fa77559af1bf2332d7a.gif' },
 					isSticky: true,
 				},
+				{
+					keepType: 'keep-text',
+					data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
+					isSticky: false,
+				},
+				{
+					keepType: 'keep-text',
+					data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
+					isSticky: false,
+				},
+
 			],
 			newKeep: null,
 		}
