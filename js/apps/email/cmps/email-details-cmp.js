@@ -3,7 +3,8 @@ export default {
 
 	template: `
 		<section class="email-details">
-		
+			{{email}}
+     		
 		
 
 		</section>
@@ -15,6 +16,8 @@ export default {
         }
 	},
 	created() {
+        console.log('deatils created');
+        
 	
 		
 	},

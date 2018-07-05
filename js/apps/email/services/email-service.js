@@ -27,7 +27,12 @@ function query() {
     return Promise.resolve(emails)
 
 }
+function getEmailById(id) {
+	let email = emails.find(email => email.id === id);
+	return Promise.resolve(email);
+}
 
 export default {
-    query
+	query,
+	getEmailById
 }

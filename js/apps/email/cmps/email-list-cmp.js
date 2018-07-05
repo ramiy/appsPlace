@@ -6,9 +6,10 @@ export default {
 
 	template: `
 		<section class="email-list">
+			LIST
 			<ul>
 				<li v-for="email in emails">
-					<email-preview :email="email" @click.native="emailSelected(email)"></email-preview>
+					<email-preview :email="email" @click.native="emailSelected(email.id)"></email-preview>
 
 				</li>
 			</ul>
@@ -21,9 +22,7 @@ export default {
             
         }
 	},
-	created() {
-		console.log('list ', this.emails);
-		
+	created() {		
 	},
 	components: {
 		emailPreview
