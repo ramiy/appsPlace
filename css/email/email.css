@@ -1,6 +1,10 @@
 .email-preview {
-    background: yellow;
+    background: white;
     display: flex;
+}
+.email-preview.read {
+    background: #f5f7f7;
+    font-weight: bold;
 }
 .email-list li {
     border-top: 1px solid black;
@@ -10,6 +14,9 @@
     border-bottom: 1px solid black;
 
 
+}
+.email-preview {
+    padding: 20px;
 }
 .email-preview .from {
     flex: 0 0 10%;

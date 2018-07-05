@@ -25,19 +25,33 @@ export default {
 		}
 	},
 	created() {
+		let emailId = this.$route.params.emailId;
+		if (emailId) this.checkId(emailId)
 
-		
+
+
 		emailService.query()
 			.then(emails => {
 				this.emails = emails;
-				
+
 			})
 	},
 	methods: {
 		emailSelected(emailId) {
 			this.$router.push(`/email/${emailId}`)
 
-			
+
+		},
+		checkId(emailId) {
+			emailService.getEmailById(emailId)
+				.then(email => {
+					if (email) {
+						this.selectedEmail = email
+					} else {
+						this.selectedEmail = null;
+						this.$router.push(`/email`);
+					}
+				})
 		}
 	},
 	computed: {
@@ -48,16 +62,13 @@ export default {
 	watch: {
 		'$route.params.emailId'(emailId) {
 			if (emailId) {
-				emailService.getEmailById(emailId)
-					.then(email => {
-						if (email) {
-							this.selectedEmail = email
-						} else {
-							this.selectedEmail=null;
-							this.$router.push(`/email`);						
-						}
-					})
+				console.log('wtach params');
 				
+				this.checkId(emailId)
+			} else {
+				this.selectedEmail = null;
+
+
 			}
 		}
 
@@ -65,7 +76,7 @@ export default {
 	components: {
 		emailList,
 		emailDetails
-	
+
 
 	}
 }

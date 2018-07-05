@@ -2,7 +2,7 @@ export default {
     props: ['email'],
 
 	template: `
-		<section class="email-preview">
+		<section class="email-preview" :class="[isRead? 'read' : '']">
 			<span class="from">{{email.from}}</span>  
 			<span class="subject">
 				{{email.subject}} - 
@@ -28,9 +28,7 @@ export default {
 	},
 	computed: {
 		isRead() {
-			if (this.email.isRead) {
-
-			}
+			return this.email.isRead
 		},
 		body() {
 			if (this.email.body.length > 100) {
