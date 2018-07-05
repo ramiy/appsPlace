@@ -1,17 +1,17 @@
 import noteItemActions from '../notes-item-actions-cmp.js';
 
 export default {
-	props: ['data', 'type', 'icon'],
+	props: ['note', 'icon'],
 	template: `
-		<section class="note-type-video note-item masonry-item">
+		<section class="note-type-video note-type masonry-item" :class="{pinned: note.isSticky}">
 
-			<video :src="data.src" controls></video>
+			<video :src="note.data.src" controls></video>
 
-			<note-item-actions :data="data" :type="type" :icon="icon"></note-item-actions>
+			<note-item-actions :note="note" :icon="icon"></note-item-actions>
 
 		</section>
 	`,
 	components: {
 		noteItemActions
-	}
+	},
 }

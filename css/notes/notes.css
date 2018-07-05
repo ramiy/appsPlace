@@ -3,14 +3,22 @@
 	padding: 0 1em;
 }
 
-.notes-app .note-item {
+.notes-app .note-type {
 	position: relative;
 	transition: 0.3s;
+	border-width: 2px;
+	border-style: solid;
+	border-color: #fff;
 }
 
-.notes-app .note-item:hover {
+.notes-app .note-type:hover {
 	transform: scale(1.025);
 	box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
+}
+
+.notes-app .note-type.pinned {
+	border-color: #888;
+	border-radius: 5px;
 }
 
 /********** ITEM ACTIONS **********/
@@ -20,8 +28,34 @@
 	padding-top: 1em;
 }
 
-.notes-app .note-item:hover .note-item-actions {
+.notes-app .note-type:hover .note-item-actions {
 	visibility: visible;
+}
+
+.note-item-actions i {
+	color: #ccc;
+}
+
+.note-item-actions i:hover,
+.note-item-actions i.selected {
+	color: black;
+}
+
+.note-item-actions i.visible {
+	visibility: visible;
+
+}
+
+.note-item-actions i.visible:hover {
+	color: #ccc;
+}
+
+.note-item-actions i.info:hover {
+	color: blue;
+}
+
+.note-item-actions i.danger:hover {
+	color: red;
 }
 
 /********** ADD ITEMS **********/
@@ -36,19 +70,20 @@
 }
 
 .notes-add input {
-    display: block;
-    padding: 0.5em 1em;
-    line-height: 1.5em;
-    border-color: transparent;
-    outline: none;
-    height: fit-content;
+	display: block;
+	padding: 0.5em 1em;
+	line-height: 1.5em;
+	border-color: transparent;
+	outline: none;
+	height: fit-content;
 }
 
 .notes-add i {
-    padding: 0.5em 0.5em;
-    color: #ccc;
+	padding: 0.5em 0.5em;
+	color: #ccc;
 }
 
+.notes-add i:hover,
 .notes-add i.selected {
-    color: black;
+	color: black;
 }

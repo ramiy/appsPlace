@@ -1,13 +1,13 @@
 import noteItemActions from '../notes-item-actions-cmp.js';
 
 export default {
-	props: ['data', 'type', 'icon'],
+	props: ['note', 'icon'],
 	template: `
-		<section class="note-type-image note-item masonry-item">
+		<section class="note-type-image note-type masonry-item" :class="{pinned: note.isSticky}">
 
-			<img :src="data.src" alt="" />
+			<img :src="note.data.src" alt="" />
 
-			<note-item-actions :data="data" :type="type" :icon="icon"></note-item-actions>
+			<note-item-actions :note="note" :icon="icon"></note-item-actions>
 
 		</section>
 	`,

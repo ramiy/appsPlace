@@ -31,7 +31,7 @@ export default {
 			this.selectedType = idx;
 		},
 		saveKeep() {
-			
+
 		},
 	}
 }

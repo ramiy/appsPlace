@@ -1,15 +1,15 @@
 import noteItemActions from '../notes-item-actions-cmp.js';
 
 export default {
-	props: ['data', 'type', 'icon'],
+	props: ['note', 'icon'],
 	template: `
-		<section class="note-type-audio note-item masonry-item">
+		<section class="note-type-audio note-type masonry-item" :class="{pinned: note.isSticky}">
 
 			<audio controls>
-				<source :src="data.src" />
+				<source :src="note.data.src" />
 			</audio>
 
-			<note-item-actions :data="data" :type="type" :icon="icon"></note-item-actions>
+			<note-item-actions :note="note" :icon="icon"></note-item-actions>
 
 		</section>
 	`,
