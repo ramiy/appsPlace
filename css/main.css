@@ -1,5 +1,6 @@
 @import 'reset.css';
 @import 'masonry.css';
+@import 'keep/checkbox.css';
 @import 'keep/keep.css';
 
 * {
