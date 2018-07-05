@@ -1,0 +1,18 @@
+.keep-app {
+	background-color: #e8e8e8;
+}
+
+.keep-app input {
+    display: block;
+	margin: 0 auto;
+    padding: 0.5em 1em;
+	line-height: 1.5em;
+	border-color: transparent;
+}
+
+.keep-app .keep-item {
+	float: left;
+	margin: 1em;
+	padding: 1em;
+	background-color: #fff;
+}
