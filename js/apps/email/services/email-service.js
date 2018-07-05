@@ -2,7 +2,7 @@ var emails = [
     {
         subject: 'First email ever!!!', 
         body: 'Hi! this would be ou email', 
-        isRead: false, 
+        isRead: true, 
         sentAt: 1530792318391,
         from: 'Itai',
 		to: 'Rami',
@@ -27,7 +27,12 @@ function query() {
     return Promise.resolve(emails)
 
 }
+function getEmailById(id) {
+	let email = emails.find(email => email.id === id);
+	return Promise.resolve(email);
+}
 
 export default {
-    query
+	query,
+	getEmailById
 }
