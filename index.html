@@ -11,7 +11,7 @@
 
 <body>
 
-	<div class="app">
+	<div id="app">
 
 		<header>
 			<h1>
@@ -20,13 +20,19 @@
 
 			<nav>
 				<ul>
-					<li>Email</li>
-					<li>Keep</li>
+					<li>
+						<router-link to="/email">Email</router-link>
+					</li>
+					<li>
+						<router-link to="/keep">Keep</router-link>
+					</li>
 				</ul>
 			</nav>
 		</header>
 
 		<main>
+
+			<router-view></router-view>
 
 		</main>
 
