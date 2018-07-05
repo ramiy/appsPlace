@@ -4,8 +4,8 @@ var emails = [
         body: 'Hi! this would be ou email', 
         isRead: true, 
         sentAt: 1530792318391,
-        from: 'Itai',
-		to: 'Rami',
+        from: {name:'Itai', email: 'itai@gmail.com'},
+        to: {name:'rami', email: 'rami@gmail.com'},
 		id: 'EfrK0'
 
     },
@@ -14,8 +14,8 @@ var emails = [
         body: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam obcaecati provident corrupti esse saepe, similique alias autem quidem quo temporibus minus officia nostrum amet perferendis et quibusdam commodi? Alias, atque.', 
         isRead: false, 
         sentAt: 1530792318391,
-        from: 'Itai',
-		to: 'Rami',
+        from: {name:'Itai', email: 'itai@gmail.com'},
+        to: {name:'rami', email: 'rami@gmail.com'},
 		id: '9IXrb'
 
     },

@@ -3,7 +3,7 @@ export default {
 
 	template: `
 		<section class="email-preview" :class="[isRead? 'read' : '']">
-			<span class="from">{{email.from}}</span>  
+			<span class="from">{{email.from.name}}</span>  
 			<span class="subject">
 				{{email.subject}} - 
 				<span class="body">
