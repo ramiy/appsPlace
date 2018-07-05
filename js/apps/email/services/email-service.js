@@ -5,7 +5,8 @@ var emails = [
         isRead: false, 
         sentAt: 1530792318391,
         from: 'Itai',
-        to: 'Rami'
+		to: 'Rami',
+		id: 'EfrK0'
 
     },
     {
@@ -14,7 +15,8 @@ var emails = [
         isRead: false, 
         sentAt: 1530792318391,
         from: 'Itai',
-        to: 'Rami'
+		to: 'Rami',
+		id: '9IXrb'
 
     },
 
