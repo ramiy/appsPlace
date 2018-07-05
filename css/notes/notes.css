@@ -1,31 +1,32 @@
-.keep-app {
+.notes-app {
 	background-color: #e8e8e8;
 	padding: 0 1em;
 }
 
-.keep-app .keep-item {
+.notes-app .note-item {
 	position: relative;
 	transition: 0.3s;
 }
 
-.keep-app .keep-item:hover {
+.notes-app .note-item:hover {
+	transform: scale(1.025);
 	box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
 }
 
 /********** ITEM ACTIONS **********/
 
-.keep-item-actions {
+.note-item-actions {
 	visibility: hidden;
 	padding-top: 1em;
 }
 
-.keep-app .keep-item:hover .keep-item-actions {
+.notes-app .note-item:hover .note-item-actions {
 	visibility: visible;
 }
 
-/********** ADD **********/
+/********** ADD ITEMS **********/
 
-.keep-add {
+.notes-add {
 	background-color: #fff;
 	padding: 10px 0;
 	display: inline-block;
@@ -34,7 +35,7 @@
 	max-width: 100%;
 }
 
-.keep-add input {
+.notes-add input {
     display: block;
     padding: 0.5em 1em;
     line-height: 1.5em;
@@ -43,11 +44,11 @@
     height: fit-content;
 }
 
-.keep-add i {
+.notes-add i {
     padding: 0.5em 0.5em;
     color: #ccc;
 }
 
-.keep-add i.selected {
+.notes-add i.selected {
     color: black;
 }

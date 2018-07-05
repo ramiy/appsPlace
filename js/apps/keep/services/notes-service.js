@@ -1,63 +1,61 @@
 var notes = [
 	{
-		keepType: 'image',
+		noteType: 'image',
 		data: { src: 'https://yesno.wtf/assets/yes/6-304e564038051dab8a5aa43156cdc20d.gif' },
 		isSticky: true,
 	},
 	{
-		keepType: 'text',
+		noteType: 'text',
 		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
 		isSticky: false,
 	},
 	{
-		keepType: 'image',
+		noteType: 'image',
 		data: { src: 'http://placehold.it/300x400?text=Image' },
 		isSticky: true,
 	},
 	{
-		keepType: 'text',
+		noteType: 'text',
 		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
 		isSticky: false,
 	},
 	{
-		keepType: 'text',
+		noteType: 'text',
 		data: { text: 'Another lorem ipsum dolor, consectetur adipiscing elit' },
 		isSticky: false,
 	},
 	{
-		keepType: 'text',
+		noteType: 'text',
 		data: { text: 'Blah blah blah ...' },
 		isSticky: false,
 	},
 	{
-		keepType: 'video',
+		noteType: 'video',
 		data: { src: 'http://techslides.com/demos/sample-videos/small.mp4' },
 		isSticky: false,
 	},
 	{
-		keepType: 'audio',
+		noteType: 'audio',
 		data: { src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3' },
 		isSticky: false,
 	},
 	{
-		keepType: 'image',
+		noteType: 'image',
 		data: { src: 'https://yesno.wtf/assets/yes/2-5df1b403f2654fa77559af1bf2332d7a.gif' },
 		isSticky: true,
 	},
 	{
-		keepType: 'text',
+		noteType: 'text',
 		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
 		isSticky: false,
 	},
 	{
-		keepType: 'text',
+		noteType: 'text',
 		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
 		isSticky: false,
 	},
 
 ];
-
-/********** note **********/
 
 function emptyNote() {
 	return {

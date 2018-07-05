@@ -1,7 +1,7 @@
 export default {
 	props: ['types'],
 	template: `
-		<section class="keep-add flex justify-content-center">
+		<section class="notes-add flex justify-content-center">
 
 			<input type="type" :placeholder="placeholder" @submit="saveKeep" />
 
