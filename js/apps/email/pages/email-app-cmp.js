@@ -5,9 +5,7 @@ export default {
 	template: `
 		<section class="email-app">
 			<h1>Emails App</h1>
-			<email-list :emails="emails">
-
-
+			<email-list :emails="emailsToShow" @emailselceted="emailSelected" v-if="!selectedEmail">
 			</email-list>
         
         </section>
@@ -30,6 +28,21 @@ export default {
 				console.log(this.emails);
 				
 			})
+	},
+	methods: {
+		emailSelected(email) {
+			this.selectedEmail = email;
+
+			
+		}
+	},
+	computed: {
+		emailsToShow() {
+			return this.emails;
+		}
+	},
+	watch: {
+
 	},
 	components: {
 		emailList,

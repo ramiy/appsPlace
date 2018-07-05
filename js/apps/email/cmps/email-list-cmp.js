@@ -8,7 +8,7 @@ export default {
 		<section class="email-list">
 			<ul>
 				<li v-for="email in emails">
-					<email-preview :email="email"></email-preview>
+					<email-preview :email="email" @click.native="emailSelected(email)"></email-preview>
 
 				</li>
 			</ul>
@@ -28,5 +28,10 @@ export default {
 	components: {
 		emailPreview
 	},
+	methods: {
+		emailSelected(email) {
+			this.$emit('emailselceted', email)
 
+		}
+	}
 }

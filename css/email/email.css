@@ -1,0 +1,19 @@
+.email-preview {
+    background: yellow;
+    display: flex;
+}
+.email-list li {
+    border-top: 1px solid black;
+    cursor: pointer;
+}
+.email-list li:last-child {
+    border-bottom: 1px solid black;
+
+
+}
+.email-preview .from {
+    flex: 0 0 10%;
+}
+.email-preview .subject .body {
+    color: gray;
+}

@@ -1,5 +1,6 @@
 @import 'reset.css';
 @import 'keep/keep.css';
+@import "email/email.css"; /* Using a string */
 
 * {
 	box-sizing: border-box
