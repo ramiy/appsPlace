@@ -1,4 +1,5 @@
 @import 'reset.css';
+@import 'masonry.css';
 @import 'keep/keep.css';
 
 * {
@@ -9,6 +10,17 @@ body {
 	font-family: 'Lato', sans-serif;
 	font-size: 16px;
 	background-color: #e8e8e8;
+}
+
+img,
+video,
+audio {
+	max-width: 100%;
+	height: auto;
+}
+
+p {
+	line-height: 1.5em;
 }
 
 /********** HELPERS **********/

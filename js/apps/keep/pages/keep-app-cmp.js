@@ -1,4 +1,9 @@
 import keepAdd from '../cmps/keep-add-cmp.js';
+import keepText from '../cmps/types/keep-text-cmp.js';
+import keepImage from '../cmps/types/keep-image-cmp.js';
+import keepVideo from '../cmps/types/keep-video-cmp.js';
+import keepAudio from '../cmps/types/keep-audio-cmp.js';
+import keepList from '../cmps/types/keep-list-cmp.js';
 
 export default {
 	template: `
@@ -8,8 +13,10 @@ export default {
 
 			<!-- <button @click="cmps.push({cmpType: 'say-hello', data: {greet : 'Hi'}})">+</button> -->
 
-			<component v-for="(cmp, idx) in keepCmps" :is="cmp.keepType" :key="idx" :data="cmp.data">
-			</component>
+			<div class="masonry">
+				<component v-for="(cmp, idx) in keepCmps" :is="cmp.keepType" :key="idx" :data="cmp.data">
+				</component>
+			</div>
 
 		</section>
 	`,
@@ -17,63 +24,56 @@ export default {
 		return {
 			currView: '',
 			keepCmps: [
-				{ keepType: 'keep-text', data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' } },
-				{ keepType: 'keep-text', data: { text: 'Another lorem ipsum dolor' } },
-				{ keepType: 'keep-image', data: { src: 'http://placehold.it/300x400?text=Image' } },
-				{ keepType: 'keep-text', data: { text: 'Blah blah blah ...' } },
-				{ keepType: 'keep-note', data: { text: 'note info...' } },
+				{
+					keepType: 'keep-image',
+					data: { src: 'https://yesno.wtf/assets/yes/6-304e564038051dab8a5aa43156cdc20d.gif' },
+					isSticky: true,
+				},
+				{
+					keepType: 'keep-image',
+					data: { src: 'http://placehold.it/300x400?text=Image' },
+					isSticky: true,
+				},
+				{
+					keepType: 'keep-text',
+					data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
+					isSticky: false,
+				},
+				{
+					keepType: 'keep-text',
+					data: { text: 'Another lorem ipsum dolor, consectetur adipiscing elit' },
+					isSticky: false,
+				},
+				{
+					keepType: 'keep-text',
+					data: { text: 'Blah blah blah ...' },
+					isSticky: false,
+				},
+				{
+					keepType: 'keep-video',
+					data: { src: 'http://techslides.com/demos/sample-videos/small.mp4' },
+					isSticky: false,
+				},
+				{
+					keepType: 'keep-audio',
+					data: { src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3' },
+					isSticky: false,
+				},
+				{
+					keepType: 'keep-image',
+					data: { src: 'https://yesno.wtf/assets/yes/2-5df1b403f2654fa77559af1bf2332d7a.gif' },
+					isSticky: true,
+				},
 			],
+			newKeep: null,
 		}
 	},
 	components: {
 		keepAdd,
-		'keep-text': {
-			props: ['data'],
-			template: `
-				<section class="keep-item keep-text">
-					{{data.text}}
-				</section>
-			`
-		},
-		'keep-image': {
-			props: ['data'],
-			template: `
-				<section class="keep-item keep-image">
-					<img :src="data.src" alt="" />
-				</section>
-			`
-		},
-		'keep-note': {
-			props: ['data'],
-			template: `
-				<section class="keep-item keep-note">
-					{{data.text}}
-				</section>
-			`
-		},
-		'keep-video': {
-			props: ['data'],
-			template: `
-				<section class="keep-item keep-video">
-					video
-				</section>
-			`
-		},
-		'keep-audio': {
-			props: ['data'],
-			template: `
-				<section class="keep-item keep-audio">
-				audio
-				</section>
-			`
-		},
-		'keep-list': {
-			props: ['data'],
-			template: `
-				<section class="keep-item keep-list">
-					list
-				</section>
-			`
-		},
+		keepText,
+		keepImage,
+		keepVideo,
+		keepAudio,
+		keepList,
 	}
 }
