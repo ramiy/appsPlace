@@ -1,10 +1,12 @@
 export default {
-	props: ['data'],
+	props: ['data', 'type', 'icon'],
 	template: `
-		<section class="keep-item-actions">
+		<section class="keep-item-actions flex space-between">
+		
+			<i :class="icon + ' fa-lg'"></i>
 
-			<label class="container">Sticky
-				<input type="checkbox"  :checked="data.isSticky">
+			<label class="checkbox-container">x
+				<input type="checkbox" :checked="data.isSticky">
 				<span class="checkmark"></span>
 			</label>
 
