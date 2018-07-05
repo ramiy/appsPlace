@@ -1,11 +1,5 @@
-.email-preview {
-    background: white;
-    display: flex;
-}
-.email-preview.read {
-    background: #f5f7f7;
-    font-weight: bold;
-}
+/* EMAIL-LIST-CMP  */
+
 .email-list li {
     border-top: 1px solid black;
     cursor: pointer;
@@ -15,12 +9,57 @@
 
 
 }
+
+
+/* EMAIL-PREVIEW-CMP */
+
 .email-preview {
+    background: white;
+    display: flex;
     padding: 20px;
 }
+
+.email-preview.read {
+    background: #f5f7f7;
+    font-weight: bold;
+}
+
 .email-preview .from {
     flex: 0 0 10%;
 }
 .email-preview .subject .body {
     color: gray;
+}
+
+
+
+/* EMAIL-DEATILS-CMP */
+.email-details {
+    background-color: white;
+}
+
+.email-details .header {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    align-items: baseline;
+}
+.email-details .header .subject {
+    flex: 0 0 100%;
+    font-size: 1.5rem;
+    padding: 10px 0;
+}
+.email-details .header h2 {
+    font-size: 1rem;
+    margin-right: 10px;
+    font-weight: bold;
+
+
+}
+.email-details .header p {
+    color: gray;
+}
+
+.email-details main {
+    padding: 20px 40px
 }

@@ -3,7 +3,13 @@ export default {
 
 	template: `
 		<section class="email-details">
-			{{email}}
+			<div class="header">
+				<div class="subject">{{email.subject}}</div>
+				<h2>{{email.from.name}} </h2>	<p><{{email.from.email}}></p>
+			</div>
+			<main>
+				{{email.body}}
+			</main>
      		
 		
 
