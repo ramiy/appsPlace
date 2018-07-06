@@ -115,3 +115,16 @@
 .notes-add i.selected {
 	color: black;
 }
+
+@media only screen and (max-width: 540px) {
+
+	.notes-add {
+		flex-direction: column-reverse;
+		align-items: center;
+	}
+
+	.notes-add input {
+		text-align: center;
+	}
+
+}
