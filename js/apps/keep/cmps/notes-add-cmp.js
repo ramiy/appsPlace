@@ -6,12 +6,12 @@ export default {
 	template: `
 		<section class="notes-add flex space-between">
 
-			<input type="type" v-model="userData" :placeholder="placeholder" @keyup.enter="addNote" ref="newNote" />
+			<input type="type" v-model="userData" :placeholder="placeholder" @keyup.enter="addNote" ref="newNoteEl" />
 
 			<div class="flex">
-			<template v-for="(type, idx) in noteTypes">
-				<i :class="setSelectedIcon(idx, type.icon)" @click="changeSelectedType(idx)"></i> 
-			</template>
+				<template v-for="(type, idx) in noteTypes">
+					<i :class="setSelectedIcon(idx, type.icon)" @click="changeSelectedType(idx)"></i> 
+				</template>
 			</div>
 
 		</section>
@@ -35,11 +35,10 @@ export default {
 		},
 		changeSelectedType(idx) {
 			this.newNote.settings.noteType = idx;
-			this.$refs.newNote.focus();
+			this.$refs.newNoteEl.focus();
 		},
 		addNote() {
-			console.log('save from add new cmp...');
-			eventBus.$emit(EVENT_NOTE_ADDED, [ this.newNote, this.userData ]);
+			eventBus.$emit(EVENT_NOTE_ADDED, this.newNote, this.userData);
 			this.newNote = notesService.emptyNote();
 			this.userData = '';
 		},

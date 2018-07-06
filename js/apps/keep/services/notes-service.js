@@ -121,7 +121,7 @@ var notes = [
 			marked: false,
 		},
 		styles: {
-			backgroundColor: '#fffff',
+			backgroundColor: '#ffcc88',
 		},
 		data: {
 			text: 'What is the object-oriented way to become wealthy? Inheritance...'
@@ -149,7 +149,7 @@ var notes = [
 			marked: false,
 		},
 		styles: {
-			backgroundColor: '#fffff',
+			backgroundColor: '#ffff88',
 		},
 		data: {
 			text: 'Real programmers count from 0.'
@@ -163,7 +163,7 @@ var notes = [
 			marked: false,
 		},
 		styles: {
-			backgroundColor: '#fffff',
+			backgroundColor: '#dddddd',
 		},
 		data: {
 			src: 'https://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3'
@@ -255,6 +255,7 @@ function cloneNote(id) {
 }
 
 function saveNote(note, data) {
+	if (!note) Promise.reject();
 
 	switch (note.settings.noteType) {
 		case 'text':
@@ -268,7 +269,6 @@ function saveNote(note, data) {
 		// default:
 		// 	return Promise.reject();
 	}
-	console.log('save from notes service...', note);
 
 	if (note.id) {
 		let noteIdx = notes.findIndex(currNote => currNote.id === note.id);

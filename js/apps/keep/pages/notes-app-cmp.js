@@ -44,8 +44,7 @@ export default {
 	},
 	methods: {
 		addNote(note, data) {
-			console.log('save from main notes cmp...');
-			notesService.saveNote(note, data)
+			notesService.saveNote(note, data);
 		},
 		pinNote(noteId) {
 			notesService.pinNote(noteId);
