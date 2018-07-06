@@ -9,7 +9,7 @@ export default {
 			<i :class="icon" class="visible" :title="iconTitle"></i>
 			<span> &nbsp; </span>
 			<i class="fas fa-palette info" title="Change note color"></i>
-			<i class="fas fa-thumbtack" :class="{selected: note.isSticky}" title="Pin note" @click="pinNote"></i>
+			<i class="fas fa-thumbtack" :class="{selected: note.settings.isSticky}" title="Pin note" @click="pinNote"></i>
 			<i class="fas fa-clone info" title="Clone note" @click="cloneNote"></i>
 			<i class="fas fa-trash-alt danger" title="Delete note" @click="removeNote"></i>
 
@@ -17,7 +17,7 @@ export default {
 	`,
 	computed: {
 		iconTitle() {
-			return this.capitalizeFirstLetter(this.note.noteType + ' note');
+			return this.capitalizeFirstLetter(this.note.settings.noteType + ' note');
 		}
 	},
 	methods: {

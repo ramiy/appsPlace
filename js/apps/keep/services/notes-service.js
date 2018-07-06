@@ -3,83 +3,143 @@ import utilsService from '../services/notes-service.js';
 var notes = [
 	{
 		id: makeId(),
-		noteType: 'image',
-		data: { src: 'https://yesno.wtf/assets/yes/6-304e564038051dab8a5aa43156cdc20d.gif' },
-		isSticky: true,
+		settings: {
+			noteType: 'image',
+			isSticky: true,
+		},
+		data: {
+			src: 'https://yesno.wtf/assets/yes/6-304e564038051dab8a5aa43156cdc20d.gif'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'video',
-		data: { src: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4' },
-		isSticky: false,
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'text',
-		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.' },
-		isSticky: false,
+		settings: {
+			noteType: 'image',
+			isSticky: true,
+		},
+		data: {
+			src: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'image',
-		data: { src: 'http://placehold.it/400x300?text=Image' },
-		isSticky: true,
+		settings: {
+			noteType: 'video',
+			isSticky: false,
+		},
+		data: {
+			src: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'text',
-		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
-		isSticky: false,
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'text',
-		data: { text: 'Another lorem ipsum dolor, consectetur adipiscing elit' },
-		isSticky: false,
+		settings: {
+			noteType: 'image',
+			isSticky: true,
+		},
+		data: {
+			src: 'http://placehold.it/400x300?text=Image'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'text',
-		data: { text: 'Blah blah blah ...' },
-		isSticky: false,
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'video',
-		data: { src: 'http://techslides.com/demos/sample-videos/small.mp4' },
-		isSticky: false,
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'Another lorem ipsum dolor, consectetur adipiscing elit'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'audio',
-		data: { src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3' },
-		isSticky: false,
+		settings: {
+			noteType: 'video',
+			isSticky: false,
+		},
+		data: {
+			src: 'http://techslides.com/demos/sample-videos/small.mp4'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'image',
-		data: { src: 'https://yesno.wtf/assets/yes/2-5df1b403f2654fa77559af1bf2332d7a.gif' },
-		isSticky: true,
+		settings: {
+			noteType: 'audio',
+			isSticky: false,
+		},
+		data: {
+			src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'text',
-		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
-		isSticky: false,
+		settings: {
+			noteType: 'image',
+			isSticky: true,
+		},
+		data: {
+			src: 'https://yesno.wtf/assets/yes/2-5df1b403f2654fa77559af1bf2332d7a.gif'
+		},
 	},
 	{
 		id: makeId(),
-		noteType: 'text',
-		data: { text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit' },
-		isSticky: false,
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+		},
+	},
+	{
+		id: makeId(),
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+		},
 	},
 ];
 
 function emptyNote() {
 	return {
-		noteType: 'text',
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
 		data: {},
-		isSticky: false,
 	};
 }
 
@@ -113,7 +173,7 @@ function cloneNote(id) {
 
 function saveNote(note, data) {
 
-	switch (note.noteType) {
+	switch (note.settings.noteType) {
 		case 'text':
 			note.data.text = data;
 			break;
@@ -139,7 +199,7 @@ function saveNote(note, data) {
 
 function pinNote(id) {
 	return getNoteById(id)
-		.then(note => note.isSticky = !note.isSticky)
+		.then(note => note.settings.isSticky = !note.settings.isSticky)
 }
 
 

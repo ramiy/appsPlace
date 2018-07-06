@@ -17,8 +17,8 @@ export default {
 
 			<div class="masonry" v-if="notesToShow">
 				<component v-for="(cmp, idx) in notesToShow"
-					:is="'note-type-'+cmp.noteType" :key="idx"
-					:note="cmp" :icon="noteTypes[cmp.noteType].icon">
+					:is="'note-type-'+cmp.settings.noteType" :key="idx"
+					:note="cmp" :icon="noteTypes[cmp.settings.noteType].icon">
 				</component>
 			</div>
 				

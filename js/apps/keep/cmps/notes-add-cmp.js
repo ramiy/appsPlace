@@ -22,17 +22,17 @@ export default {
 	},
 	computed: {
 		placeholder() {
-			return this.types[this.newNote.noteType].placeholder;
+			return this.types[this.newNote.settings.noteType].placeholder;
 		}
 	},
 	methods: {
 		setSelectedIcon(idx, icon) {
 			let iconClass = icon + ' fa-lg';
-			if (idx === this.newNote.noteType) iconClass += ' selected';
+			if (idx === this.newNote.settings.noteType) iconClass += ' selected';
 			return iconClass;
 		},
 		changeSelectedType(idx) {
-			this.newNote.noteType = idx;
+			this.newNote.settings.noteType = idx;
 			this.$refs.newNote.focus();
 		},
 		addNote() {
