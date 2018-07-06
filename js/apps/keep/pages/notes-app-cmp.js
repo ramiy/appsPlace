@@ -10,14 +10,11 @@ export default {
 
 			<notes-add :noteTypes="noteTypes"></notes-add>
 
-			<notes-list :notes="notesToShow" :noteTypes="noteTypes"></notes-list>
+			<notes-list :noteCmps="noteCmps" :noteTypes="noteTypes"></notes-list>
 
 		</section>
 	`,
-	components: {
-		notesAdd,
-		notesList,
-	},
+	components: { notesAdd, notesList },
 	data() {
 		return {
 			noteTypes: {
@@ -28,13 +25,10 @@ export default {
 				list: { icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
 			},
 			noteCmps: null,
-			filter: null
 		}
 	},
 	created() {
-		notesService.query()
-			.then(noteCmps => this.noteCmps = noteCmps);
-
+		this.loadNotes();
 		eventBus.$on(EVENT_NOTE_ADDED, (note, data) => this.addNote(note, data));
 		eventBus.$on(EVENT_NOTE_PINNED, noteId => this.pinNote(noteId));
 		eventBus.$on(EVENT_NOTE_MARKED, noteId => this.markNote(noteId));
@@ -43,6 +37,10 @@ export default {
 		eventBus.$on(EVENT_NOTE_DELETED, noteId => this.removeNote(noteId));
 	},
 	methods: {
+		loadNotes() {
+			notesService.query()
+				.then(noteCmps => this.noteCmps = noteCmps);
+		},
 		addNote(note, data) {
 			notesService.saveNote(note, data);
 		},
@@ -61,51 +59,5 @@ export default {
 		removeNote(noteId) {
 			notesService.removeNote(noteId);
 		},
-	},
-	computed: {
-		notesToShow() {
-			let notesToShow = this.noteCmps;
-
-			if (this.filter) {
-
-				// Search by search
-				notesToShow = notesToShow.filter(book => {
-					return book.title.includes(this.filter.by);
-				});
-
-				// Filter by price range
-				notesToShow = notesToShow.filter(book => {
-					let price = book.listPrice.amount;
-					return (price >= this.filter.fromPrice && price <= this.filter.toPrice);
-				});
-
-				// Sort by
-				switch (this.filter.sort) {
-					case 'name':
-						notesToShow = notesToShow.sort((a, b) => {
-							if (a.title < b.title)
-								return -1;
-							if (a.title > b.title)
-								return 1;
-							return 0;
-							// return a.title < b.title; // Not working?!
-						});
-						break;
-					case 'price':
-						notesToShow = notesToShow.sort((a, b) => {
-							return a.listPrice.amount - b.listPrice.amount;
-						});
-						break;
-					case 'date':
-						notesToShow = notesToShow.sort((a, b) => {
-							return a.publishedDate - b.publishedDate;
-						});
-						break;
-				}
-
-			}
-
-			return notesToShow;
-		}
 	}
 }

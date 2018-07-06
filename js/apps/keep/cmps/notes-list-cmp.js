@@ -5,13 +5,23 @@ import noteTypeAudio from '../cmps/types/note-type-audio-cmp.js';
 import noteTypeList from '../cmps/types/note-type-list-cmp.js';
 
 export default {
-	props: ['notes', 'noteTypes'],
+	props: ['noteCmps', 'noteTypes'],
 	template: `
-		<section class="notes-list masonry" v-if="notes">
+		<section class="notes-list" v-if="noteCmps">
 
-			<component v-for="(cmp, idx) in notes" :is="'note-type-'+cmp.settings.noteType"
-				:key="idx" :note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
-			</component>
+			<h3 v-if="pinnedNotesToShow"> Pinned Notes </h3>
+			<div v-if="pinnedNotesToShow" class="masonry">
+				<component v-for="(cmp, idx) in pinnedNotesToShow" :is="'note-type-'+cmp.settings.noteType"
+					:key="idx" :note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
+				</component>
+			</div>
+
+			<h3 v-if="pinnedNotesToShow"> Other Notes </h3>
+			<div v-if="notesToShow" class="masonry">
+				<component v-for="(cmp, idx) in notesToShow" :is="'note-type-'+cmp.settings.noteType"
+					:key="idx" :note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
+				</component>
+			</div>
 
 		</section>
 	`,
@@ -22,4 +32,12 @@ export default {
 		noteTypeAudio,
 		noteTypeList,
 	},
+	computed: {
+		pinnedNotesToShow() {
+			return this.noteCmps.filter(note => (note.settings.pinned));
+		},
+		notesToShow() {
+			return this.noteCmps.filter(note => (!note.settings.pinned));
+		}
+	}
 }

@@ -21,6 +21,13 @@
 	border-radius: 5px;
 }
 
+/********** NOTES LIST **********/
+
+.notes-list h3 {
+	padding: 1em 0;
+	font-weight: bold;
+}
+
 /********** NOTE ACTIONS **********/
 
 .note-item-actions {
