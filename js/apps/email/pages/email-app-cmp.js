@@ -6,10 +6,16 @@ export default {
 	template: `
 		<section class="email-app">
 			<h1>Emails App</h1>
-			<email-list :emails="emailsToShow" @emailselceted="emailSelected" v-if="!selectedEmail">
+			<email-list :emails="emailsToShow" @emailselceted="emailSelected" v-if="!selectedEmail"  @delete-email="deleteEmail">
 
 			</email-list>
-			<email-details :email="selectedEmail" v-if="selectedEmail"></email-details>
+			<email-details 
+				:email="selectedEmail" 
+				v-if="selectedEmail" 
+				@delete-email="deleteEmail" 
+				@email-read="markAsRead"
+				>
+			</email-details>
         
         </section>
     
@@ -42,6 +48,17 @@ export default {
 
 
 		},
+		markAsRead(id) {
+			debugger;
+			emailService.toggleRead(id, true) 
+		},
+		deleteEmail(id) {
+			emailService.deleteEmail(id)
+				.then(() => {
+					this.selectedEmail = null;
+
+				})
+		},
 		checkId(emailId) {
 			emailService.getEmailById(emailId)
 				.then(email => {
@@ -63,12 +80,17 @@ export default {
 		'$route.params.emailId'(emailId) {
 			if (emailId) {
 				console.log('wtach params');
-				
+
 				this.checkId(emailId)
 			} else {
 				this.selectedEmail = null;
 
 
+			}
+		},
+		selectedEmail: function (email) {
+			if (!email) {
+				this.$router.push(`/email`);
 			}
 		}
 
@@ -79,4 +101,5 @@ export default {
 
 
 	}
+
 }

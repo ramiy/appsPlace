@@ -9,7 +9,7 @@ export default {
 			LIST
 			<ul>
 				<li v-for="email in emails">
-					<email-preview :email="email" @click.native="emailSelected(email.id)"></email-preview>
+					<email-preview :key="email.id" @delete-email="deleteEmail" :email="email" @click.native="emailSelected(email.id)"></email-preview>
 
 				</li>
 			</ul>
@@ -28,6 +28,9 @@ export default {
 		emailPreview
 	},
 	methods: {
+		deleteEmail(id){
+			this.$emit('delete-email', id)
+		},
 		emailSelected(email) {
 			this.$emit('emailselceted', email)
 
