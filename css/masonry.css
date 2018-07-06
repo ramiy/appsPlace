@@ -1,6 +1,6 @@
 /* The Masonry Container */
 .masonry {
-	margin: 2em auto;
+	margin: 0 auto;
 	column-gap: 1.5em;
 }
 
