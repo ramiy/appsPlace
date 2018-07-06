@@ -1,4 +1,4 @@
-import { eventBus, EVENT_NOTE_PINNED, EVENT_NOTE_DELETED } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_NOTE_PINNED, EVENT_NOTE_CLONED, EVENT_NOTE_DELETED } from '../../../services/eventbus-service.js'
 import notesService from '../services/notes-service.js';
 
 export default {
@@ -7,9 +7,10 @@ export default {
 		<section class="note-item-actions flex space-between">
 
 			<i :class="icon" class="visible" :title="iconTitle"></i>
-			<i class="fas fa-thumbtack" :class="{selected: note.isSticky}" @click="pinNote" title="Pin note"></i>
 			<i class="fas fa-palette info" title="Change note color"></i>
-			<i class="fas fa-trash-alt danger" @click="removeNote" title="Delete note"></i>
+			<i class="fas fa-thumbtack" :class="{selected: note.isSticky}" title="Pin note" @click="pinNote"></i>
+			<i class="fas fa-clone info" title="Clone note" @click="cloneNote"></i>
+			<i class="fas fa-trash-alt danger" title="Delete note" @click="removeNote"></i>
 
 		</section>
 	`,
@@ -21,6 +22,9 @@ export default {
 	methods: {
 		pinNote() {
 			eventBus.$emit(EVENT_NOTE_PINNED, this.note.id);
+		},
+		cloneNote() {
+			eventBus.$emit(EVENT_NOTE_CLONED, this.note.id)
 		},
 		removeNote() {
 			eventBus.$emit(EVENT_NOTE_DELETED, this.note.id)

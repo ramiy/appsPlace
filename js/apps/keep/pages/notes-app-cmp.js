@@ -1,4 +1,4 @@
-import { eventBus, EVENT_NOTE_PINNED, EVENT_NOTE_DELETED } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_NOTE_PINNED, EVENT_NOTE_CLONED, EVENT_NOTE_DELETED } from '../../../services/eventbus-service.js'
 import notesService from '../services/notes-service.js';
 
 import notesAdd from '../cmps/notes-add-cmp.js';
@@ -46,16 +46,18 @@ export default {
 	},
 	created() {
 		notesService.query()
-			.then(noteCmps => {
-				this.noteCmps = noteCmps
-			});
+			.then(noteCmps => this.noteCmps = noteCmps);
 
 		eventBus.$on(EVENT_NOTE_PINNED, noteId => this.pinNote(noteId));
+		eventBus.$on(EVENT_NOTE_CLONED, noteId => this.cloneNote(noteId));
 		eventBus.$on(EVENT_NOTE_DELETED, noteId => this.removeNote(noteId));
 	},
 	methods: {
 		pinNote(noteId) {
 			notesService.pinNote(noteId);
+		},
+		cloneNote(noteId) {
+			notesService.cloneNote(noteId);
 		},
 		removeNote(noteId) {
 			notesService.removeNote(noteId);

@@ -98,7 +98,14 @@ function removeNote(id) {
 	});
 }
 
-function saveNote(note) {
+function cloneNote(id) {
+	let oldNoteIdx = notes.findIndex(note => note.id === id);
+	return getNoteById(id)
+		.then(newNote => notes.splice(oldNoteIdx, 0, newNote));
+
+}
+
+function saveNote(note, data) {
 	if (note.id) {
 		var noteIdx = notes.findIndex(currNote => currNote.id === note.id);
 		notes.splice(noteIdx, 1, note)
@@ -120,6 +127,7 @@ export default {
 	query,
 	getNoteById,
 	removeNote,
+	cloneNote,
 	saveNote,
 	pinNote,
 }
