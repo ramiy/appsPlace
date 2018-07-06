@@ -1,17 +1,22 @@
 import noteItemActions from '../notes-item-actions-cmp.js';
 
 export default {
-	props: ['note', 'icon'],
+	props: ['note', 'noteTypesInfo'],
 	template: `
-		<section class="note-type-text note-type masonry-item" :class="{pinned: note.settings.isSticky}">
+		<section class="note-type-text note-type masonry-item" :class="{marked: note.settings.marked}">
 
-			<p>{{note.data.text}}</p>
+			<p contenteditable="true" @input="updateNote">{{note.data.text}}</p>
 
-			<note-item-actions :note="note" :icon="icon"></note-item-actions>
+			<note-item-actions :note="note" :noteTypesInfo="noteTypesInfo"></note-item-actions>
 
 		</section>
 	`,
 	components: {
 		noteItemActions
+	},
+	methods: {
+		updateNote(ev) {
+			// eventBus.$emit('update', ev.target.innerText);
+		}
 	}
 }

@@ -5,7 +5,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'image',
-			isSticky: true,
+			pinned: false,
+			marked: true,
 		},
 		data: {
 			src: 'https://yesno.wtf/assets/yes/6-304e564038051dab8a5aa43156cdc20d.gif'
@@ -15,7 +16,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			text: 'How many programmers does it take to screw in a light bulb? None, it\'s a hardware problem.'
@@ -25,7 +27,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'image',
-			isSticky: true,
+			pinned: false,
+			marked: true,
 		},
 		data: {
 			src: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg'
@@ -35,7 +38,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			text: 'What is a programmer\'s favorit hangout place? Foo bar...'
@@ -45,7 +49,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'video',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			src: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'
@@ -55,7 +60,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			text: 'Definition, Algorithm: Word used by programmers when they do not want to explain what they did.'
@@ -65,7 +71,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'image',
-			isSticky: true,
+			pinned: false,
+			marked: true,
 		},
 		data: {
 			src: 'http://placehold.it/400x300?text=Image'
@@ -75,7 +82,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
@@ -85,7 +93,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			text: 'What is the object-oriented way to become wealthy? Inheritance...'
@@ -95,7 +104,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'video',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			src: 'http://techslides.com/demos/sample-videos/small.mp4'
@@ -105,7 +115,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: true,
+			marked: false,
 		},
 		data: {
 			text: 'Real programmers count from 0.'
@@ -115,7 +126,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'audio',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3'
@@ -125,7 +137,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'image',
-			isSticky: true,
+			pinned: false,
+			marked: true,
 		},
 		data: {
 			src: 'https://yesno.wtf/assets/yes/2-5df1b403f2654fa77559af1bf2332d7a.gif'
@@ -135,7 +148,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			text: 'A SQL query goes into a bar, walks to tables and asks: "Can I join you?"'
@@ -145,7 +159,8 @@ var notes = [
 		id: makeId(),
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {
 			text: 'There are only 10 types of people in the world: Those that understand binary and those that don\'t.'
@@ -157,7 +172,8 @@ function emptyNote() {
 	return {
 		settings: {
 			noteType: 'text',
-			isSticky: false,
+			pinned: false,
+			marked: false,
 		},
 		data: {},
 	};
@@ -219,9 +235,13 @@ function saveNote(note, data) {
 
 function pinNote(id) {
 	return getNoteById(id)
-		.then(note => note.settings.isSticky = !note.settings.isSticky)
+		.then(note => note.settings.pinned = !note.settings.pinned);
 }
 
+function markNote(id) {
+	return getNoteById(id)
+		.then(note => note.settings.marked = !note.settings.marked);
+}
 
 export default {
 	emptyNote,
@@ -231,6 +251,7 @@ export default {
 	cloneNote,
 	saveNote,
 	pinNote,
+	markNote,
 }
 
 

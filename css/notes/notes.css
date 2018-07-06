@@ -16,7 +16,7 @@
 	box-shadow: 0 0 0 0 transparent, 0 0 0 0 transparent, 0 2px 15px rgba(0,0,0,0.30);
 }
 
-.notes-app .note-type.pinned {
+.notes-app .note-type.marked {
 	border-color: #888;
 	border-radius: 5px;
 }
@@ -24,6 +24,7 @@
 /********** ITEM ACTIONS **********/
 
 .note-item-actions {
+	position: relative;
 	visibility: hidden;
 	padding-top: 1em;
 }
@@ -33,17 +34,17 @@
 }
 
 .note-item-actions i {
+	cursor: pointer;
 	color: #ccc;
 }
 
-.note-item-actions i:hover,
-.note-item-actions i.selected {
-	color: black;
+.note-item-actions i:hover {
+	color: #999;
 }
 
 .note-item-actions i.visible {
 	visibility: visible;
-
+	cursor: default;
 }
 
 .note-item-actions i.visible:hover {
@@ -56,6 +57,27 @@
 
 .note-item-actions i.danger:hover {
 	color: red;
+}
+
+.note-item-actions i.pinned,
+.note-item-actions i.marked {
+	color: #000;
+}
+
+.note-item-actions i.colors .dropdown-content {
+	position: absolute;
+	right: 0;
+    top: 15px;
+	background-color: #fff;
+}
+
+.note-item-actions i.colors span {
+	width: 20px;
+    height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid #eee;
 }
 
 /********** ADD ITEMS **********/

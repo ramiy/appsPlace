@@ -2,13 +2,13 @@ import { eventBus, EVENT_NOTE_ADDED } from '../../../services/eventbus-service.j
 import notesService from '../services/notes-service.js';
 
 export default {
-	props: ['types'],
+	props: ['noteTypes'],
 	template: `
 		<section class="notes-add flex justify-content-center">
 
 			<input type="type" v-model="userData" :placeholder="placeholder" @keyup.enter="addNote" ref="newNote" />
 
-			<template v-for="(type, idx) in types">
+			<template v-for="(type, idx) in noteTypes">
 				<i :class="setSelectedIcon(idx, type.icon)" @click="changeSelectedType(idx)"></i> 
 			</template>
 
@@ -22,7 +22,7 @@ export default {
 	},
 	computed: {
 		placeholder() {
-			return this.types[this.newNote.settings.noteType].placeholder;
+			return this.noteTypes[this.newNote.settings.noteType].placeholder;
 		}
 	},
 	methods: {
