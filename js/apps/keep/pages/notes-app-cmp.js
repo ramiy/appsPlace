@@ -2,12 +2,7 @@ import { eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED, EVENT
 import notesService from '../services/notes-service.js';
 
 import notesAdd from '../cmps/notes-add-cmp.js';
-
-import noteTypeText from '../cmps/types/note-type-text-cmp.js';
-import noteTypeImage from '../cmps/types/note-type-image-cmp.js';
-import noteTypeVideo from '../cmps/types/note-type-video-cmp.js';
-import noteTypeAudio from '../cmps/types/note-type-audio-cmp.js';
-import noteTypeList from '../cmps/types/note-type-list-cmp.js';
+import notesList from '../cmps/notes-list-cmp.js';
 
 export default {
 	template: `
@@ -15,22 +10,13 @@ export default {
 
 			<notes-add :noteTypes="noteTypes"></notes-add>
 
-			<div class="masonry" v-if="notesToShow">
-				<component v-for="(cmp, idx) in notesToShow"
-					:is="'note-type-'+cmp.settings.noteType" :key="idx"
-					:note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
-				</component>
-			</div>
-				
+			<notes-list :notes="notesToShow" :noteTypes="noteTypes"></notes-list>
+
 		</section>
 	`,
 	components: {
 		notesAdd,
-		noteTypeText,
-		noteTypeImage,
-		noteTypeVideo,
-		noteTypeAudio,
-		noteTypeList,
+		notesList,
 	},
 	data() {
 		return {
