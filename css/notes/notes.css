@@ -8,7 +8,7 @@
 	transition: 0.3s;
 	border-width: 2px;
 	border-style: solid;
-	border-color: #fff;
+	border-color: transparent;
 }
 
 .notes-app .note-type:hover {
