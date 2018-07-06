@@ -18,7 +18,7 @@ var notes = [
 			isSticky: false,
 		},
 		data: {
-			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+			text: 'How many programmers does it take to screw in a light bulb? None, it\'s a hardware problem.'
 		},
 	},
 	{
@@ -29,6 +29,16 @@ var notes = [
 		},
 		data: {
 			src: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/Solar_sys8.jpg'
+		},
+	},
+	{
+		id: makeId(),
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'What is a programmer\'s favorit hangout place? Foo bar...'
 		},
 	},
 	{
@@ -48,7 +58,7 @@ var notes = [
 			isSticky: false,
 		},
 		data: {
-			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+			text: 'Definition, Algorithm: Word used by programmers when they do not want to explain what they did.'
 		},
 	},
 	{
@@ -68,7 +78,7 @@ var notes = [
 			isSticky: false,
 		},
 		data: {
-			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 		},
 	},
 	{
@@ -78,7 +88,7 @@ var notes = [
 			isSticky: false,
 		},
 		data: {
-			text: 'Another lorem ipsum dolor, consectetur adipiscing elit'
+			text: 'What is the object-oriented way to become wealthy? Inheritance...'
 		},
 	},
 	{
@@ -89,6 +99,16 @@ var notes = [
 		},
 		data: {
 			src: 'http://techslides.com/demos/sample-videos/small.mp4'
+		},
+	},
+	{
+		id: makeId(),
+		settings: {
+			noteType: 'text',
+			isSticky: false,
+		},
+		data: {
+			text: 'Real programmers count from 0.'
 		},
 	},
 	{
@@ -118,7 +138,7 @@ var notes = [
 			isSticky: false,
 		},
 		data: {
-			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+			text: 'A SQL query goes into a bar, walks to tables and asks: "Can I join you?"'
 		},
 	},
 	{
@@ -128,7 +148,7 @@ var notes = [
 			isSticky: false,
 		},
 		data: {
-			text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit'
+			text: 'There are only 10 types of people in the world: Those that understand binary and those that don\'t.'
 		},
 	},
 ];
