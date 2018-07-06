@@ -68,7 +68,16 @@ audio {
 	align-content: flex-end;
 }
 
-/********** GENERAL **********/
+.dropdown:hover > .dropdown-content {
+	opacity: 1;
+	visibility: visible;
+}
+
+.dropdown .dropdown-content {
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+}
 
 /********** HEADER **********/
 

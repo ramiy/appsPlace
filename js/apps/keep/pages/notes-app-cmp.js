@@ -1,4 +1,4 @@
-import { eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED, EVENT_NOTE_CLONED, EVENT_NOTE_DELETED } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED, EVENT_NOTE_CLONED, EVENT_NOTE_DELETED } from '../../../services/eventbus-service.js'
 import notesService from '../services/notes-service.js';
 
 import notesAdd from '../cmps/notes-add-cmp.js';
@@ -13,12 +13,12 @@ export default {
 	template: `
 		<section class="notes-app">
 
-			<notes-add :types="noteTypes"></notes-add>
+			<notes-add :noteTypes="noteTypes"></notes-add>
 
 			<div class="masonry" v-if="notesToShow">
 				<component v-for="(cmp, idx) in notesToShow"
 					:is="'note-type-'+cmp.settings.noteType" :key="idx"
-					:note="cmp" :icon="noteTypes[cmp.settings.noteType].icon">
+					:note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
 				</component>
 			</div>
 				
@@ -51,6 +51,7 @@ export default {
 
 		eventBus.$on(EVENT_NOTE_ADDED, (note, data) => this.addNote(note, data));
 		eventBus.$on(EVENT_NOTE_PINNED, noteId => this.pinNote(noteId));
+		eventBus.$on(EVENT_NOTE_MARKED, noteId => this.markNote(noteId));
 		eventBus.$on(EVENT_NOTE_CLONED, noteId => this.cloneNote(noteId));
 		eventBus.$on(EVENT_NOTE_DELETED, noteId => this.removeNote(noteId));
 	},
@@ -61,6 +62,9 @@ export default {
 		},
 		pinNote(noteId) {
 			notesService.pinNote(noteId);
+		},
+		markNote(noteId) {
+			notesService.markNote(noteId);
 		},
 		cloneNote(noteId) {
 			notesService.cloneNote(noteId);
