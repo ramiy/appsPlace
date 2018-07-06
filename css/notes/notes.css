@@ -35,11 +35,11 @@
 
 .note-item-actions i {
 	cursor: pointer;
-	color: #ccc;
+	color: #999;
 }
 
 .note-item-actions i:hover {
-	color: #999;
+	color: #666;
 }
 
 .note-item-actions i.visible {
@@ -67,8 +67,7 @@
 .note-item-actions i.colors .dropdown-content {
 	position: absolute;
 	right: 0;
-    top: 15px;
-	background-color: #fff;
+    top: 2em;
 }
 
 .note-item-actions i.colors span {
@@ -78,6 +77,11 @@
     cursor: pointer;
     border-radius: 50%;
     border: 1px solid #eee;
+}
+
+.note-item-actions i.colors span:hover,
+.note-item-actions i.colors span.selected {
+	border-color: #000;
 }
 
 /********** ADD ITEMS **********/
@@ -98,6 +102,8 @@
 	border-color: transparent;
 	outline: none;
 	height: fit-content;
+    width: 100%;
+    max-width: 100%;
 }
 
 .notes-add i {

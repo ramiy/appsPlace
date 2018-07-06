@@ -4,13 +4,15 @@ import notesService from '../services/notes-service.js';
 export default {
 	props: ['noteTypes'],
 	template: `
-		<section class="notes-add flex justify-content-center">
+		<section class="notes-add flex space-between">
 
 			<input type="type" v-model="userData" :placeholder="placeholder" @keyup.enter="addNote" ref="newNote" />
 
+			<div class="flex">
 			<template v-for="(type, idx) in noteTypes">
 				<i :class="setSelectedIcon(idx, type.icon)" @click="changeSelectedType(idx)"></i> 
 			</template>
+			</div>
 
 		</section>
 	`,
