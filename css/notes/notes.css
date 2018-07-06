@@ -21,7 +21,7 @@
 	border-radius: 5px;
 }
 
-/********** ITEM ACTIONS **********/
+/********** NOTE ACTIONS **********/
 
 .note-item-actions {
 	position: relative;
@@ -84,7 +84,7 @@
 	border-color: #000;
 }
 
-/********** ADD ITEMS **********/
+/********** ADD NOTES **********/
 
 .notes-add {
 	background-color: #fff;

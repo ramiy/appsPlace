@@ -54,7 +54,7 @@ var notes = [
 			backgroundColor: '#fffff',
 		},
 		data: {
-			text: 'What is a programmer\'s favorit hangout place? Foo bar...'
+			text: 'What is a programmer\'s favorite hangout place? Foo bar...'
 		},
 	},
 	{
@@ -205,10 +205,10 @@ var notes = [
 			marked: true,
 		},
 		styles: {
-			backgroundColor: '#fffff',
+			backgroundColor: '#ccff99',
 		},
 		data: {
-			list: [ 'aaa', 'bbb', 'ccc' ]
+			list: [ 'eat()', 'sleep()', 'code()', 'repeat()' ]
 		},
 	},
 	{
