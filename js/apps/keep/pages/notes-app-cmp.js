@@ -25,7 +25,7 @@ export default {
 				image: { icon: 'far fa-image', placeholder: 'Enter image URL...' },
 				video: { icon: 'fab fa-youtube', placeholder: 'Enter video URL...' },
 				audio: { icon: 'fas fa-volume-up', placeholder: 'Enter audio URL...' },
-				list: { icon: 'fas fa-list', placeholder: 'Add list items...' },
+				list: { icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
 			},
 			noteCmps: null,
 			filter: null

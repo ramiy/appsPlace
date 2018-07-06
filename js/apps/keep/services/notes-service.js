@@ -200,6 +200,20 @@ var notes = [
 	{
 		id: makeId(),
 		settings: {
+			noteType: 'list',
+			pinned: false,
+			marked: true,
+		},
+		styles: {
+			backgroundColor: '#fffff',
+		},
+		data: {
+			list: [ 'aaa', 'bbb', 'ccc' ]
+		},
+	},
+	{
+		id: makeId(),
+		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
@@ -265,6 +279,9 @@ function saveNote(note, data) {
 		case 'video':
 		case 'audio':
 			note.data.src = data;
+			break;
+		case 'list':
+			note.data.list = data.split(',');
 			break;
 		// default:
 		// 	return Promise.reject();

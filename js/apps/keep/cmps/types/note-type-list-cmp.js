@@ -7,7 +7,11 @@ export default {
 			:class="{marked: note.settings.marked}"
 			:style="{'background-color': note.styles.backgroundColor }">
 
-			list
+			<ul>
+				<li v-for="list in note.data.list">
+					<p>{{list}}</p>
+				</li>
+			</ul>
 
 			<note-item-actions :note="note" :noteTypesInfo="noteTypesInfo"></note-item-actions>
 
