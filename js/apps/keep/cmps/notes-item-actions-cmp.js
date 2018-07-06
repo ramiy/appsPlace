@@ -7,6 +7,7 @@ export default {
 		<section class="note-item-actions flex space-between">
 
 			<i :class="icon" class="visible" :title="iconTitle"></i>
+			<span> &nbsp; </span>
 			<i class="fas fa-palette info" title="Change note color"></i>
 			<i class="fas fa-thumbtack" :class="{selected: note.isSticky}" title="Pin note" @click="pinNote"></i>
 			<i class="fas fa-clone info" title="Clone note" @click="cloneNote"></i>
