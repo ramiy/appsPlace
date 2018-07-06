@@ -53,7 +53,7 @@ var notes = [
 			marked: false,
 		},
 		data: {
-			src: 'http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'
+			src: 'https://clips.vorwaerts-gmbh.de/VfE_html5.mp4'
 		},
 	},
 	{
@@ -75,7 +75,7 @@ var notes = [
 			marked: true,
 		},
 		data: {
-			src: 'http://placehold.it/400x300?text=Image'
+			src: 'https://placehold.it/400x300?text=Image'
 		},
 	},
 	{
@@ -130,7 +130,7 @@ var notes = [
 			marked: false,
 		},
 		data: {
-			src: 'http://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3'
+			src: 'https://cld2099web.audiovideoweb.com/va90web25003/companions/Foundations%20of%20Rock/13.01.mp3'
 		},
 	},
 	{
