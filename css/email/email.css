@@ -43,6 +43,7 @@
     flex-wrap: wrap;
     padding: 10px;
     align-items: baseline;
+    position: relative;
 }
 .email-details .header .subject {
     flex: 0 0 100%;
@@ -59,7 +60,17 @@
 .email-details .header p {
     color: gray;
 }
+.email-details .header .btn-delete {
+    position: absolute;
+    right: 10px;
+    background-color:#e8e8e8;
+    border: 0;
+    border-radius: 50%;
+    width: 40px; 
+    height: 40px; 
+    cursor: pointer;
+}
 
 .email-details main {
-    padding: 20px 40px
+    padding: 20px 40px;
 }
