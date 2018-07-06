@@ -1,7 +1,7 @@
 @import 'reset.css';
 @import 'masonry.css';
-@import 'keep/checkbox.css';
-@import 'keep/keep.css';
+@import 'notes/checkbox.css';
+@import 'notes/notes.css';
 @import "email/email.css"; /* Using a string */
 
 * {

@@ -6,11 +6,11 @@ function loadFromStorage(key) {
 	return JSON.parse(localStorage.getItem(key))
 }
 
-function makeid(length = 5) {
-	var text = "";
-	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+function makeId(length = 20) {
+	let text = "";
+	let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-	for (var i = 0; i < length; i++) {
+	for (let i = 0; i < length; i++) {
 		text += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
 
@@ -20,5 +20,5 @@ function makeid(length = 5) {
 export default {
 	loadFromStorage,
 	saveToStorage,
-	makeid
+	makeId
 }
