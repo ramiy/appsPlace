@@ -1,4 +1,8 @@
-import { eventBus, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED, EVENT_NOTE_STYLED, EVENT_NOTE_CLONED, EVENT_NOTE_DELETED } from '../../../services/eventbus-service.js'
+import {
+	eventBus, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED,
+	EVENT_NOTE_STYLED, EVENT_NOTE_EDITING,
+	EVENT_NOTE_CLONED, EVENT_NOTE_DELETED
+} from '../../../services/eventbus-service.js'
 
 export default {
 	props: ['note', 'noteTypesInfo'],
@@ -17,6 +21,7 @@ export default {
 					</template>
 				</div>
 			</i>
+			<i class="fas fa-edit" :class="{marked: note.settings.editMode}" title="Edit note" @click="editNote"></i>
 			<i class="fas fa-clone info" title="Clone note" @click="cloneNote"></i>
 			<i class="fas fa-trash-alt danger" title="Delete note" @click="removeNote"></i>
 
@@ -39,6 +44,9 @@ export default {
 		},
 		styleNote(newBgColor) {
 			eventBus.$emit(EVENT_NOTE_STYLED, this.note.id, newBgColor);
+		},
+		editNote() {
+			eventBus.$emit(EVENT_NOTE_EDITING, this.note.id);
 		},
 		cloneNote() {
 			eventBus.$emit(EVENT_NOTE_CLONED, this.note.id);

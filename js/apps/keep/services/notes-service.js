@@ -7,6 +7,7 @@ var notes = [
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -21,6 +22,7 @@ var notes = [
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -35,6 +37,7 @@ var notes = [
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ffff88',
@@ -49,6 +52,7 @@ var notes = [
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -63,6 +67,7 @@ var notes = [
 			noteType: 'video',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -77,6 +82,7 @@ var notes = [
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -91,6 +97,7 @@ var notes = [
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -105,6 +112,7 @@ var notes = [
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -119,6 +127,7 @@ var notes = [
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ffcc88',
@@ -133,6 +142,7 @@ var notes = [
 			noteType: 'video',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -147,6 +157,7 @@ var notes = [
 			noteType: 'text',
 			pinned: true,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ffff88',
@@ -161,6 +172,7 @@ var notes = [
 			noteType: 'audio',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#dddddd',
@@ -175,6 +187,7 @@ var notes = [
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -189,6 +202,7 @@ var notes = [
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -203,6 +217,7 @@ var notes = [
 			noteType: 'list',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ccff99',
@@ -222,6 +237,7 @@ var notes = [
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -238,6 +254,7 @@ function emptyNote() {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '',
@@ -320,6 +337,11 @@ function styleNote(id, bgColor) {
 		.then(note => note.styles.backgroundColor = bgColor);
 }
 
+function editNote(id) {
+	return getNoteById(id)
+		.then(note => note.settings.editMode = !note.settings.editMode);
+}
+
 function updateListNoteStatus(id, listIdx) {
 	return getNoteById(id)
 		.then(note => note.data.list[listIdx].completed = !note.data.list[listIdx].completed);
@@ -335,5 +357,6 @@ export default {
 	pinNote,
 	markNote,
 	styleNote,
+	editNote,
 	updateListNoteStatus,
 }
