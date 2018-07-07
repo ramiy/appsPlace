@@ -1,6 +1,5 @@
 @import 'reset.css';
 @import 'masonry.css';
-@import 'notes/checkbox.css';
 @import 'notes/notes.css';
 @import "email/email.css"; /* Using a string */
 

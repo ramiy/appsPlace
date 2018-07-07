@@ -4,13 +4,16 @@ import notesService from '../services/notes-service.js';
 export default {
 	props: ['noteTypes'],
 	template: `
-		<section class="notes-add flex justify-content-center">
+		<section class="notes-add flex space-between">
 
-			<input type="type" v-model="userData" :placeholder="placeholder" @keyup.enter="addNote" ref="newNote" />
+			<input type="text" autocomplete="off" v-model="userData"
+				:placeholder="placeholder" @keyup.enter="addNote" ref="newNoteEl" />
 
-			<template v-for="(type, idx) in noteTypes">
-				<i :class="setSelectedIcon(idx, type.icon)" @click="changeSelectedType(idx)"></i> 
-			</template>
+			<div class="flex">
+				<template v-for="(noteType, idx) in noteTypes">
+					<i :class="setSelectedType(idx, noteType.icon)" @click="updateSelectedType(idx)"></i> 
+				</template>
+			</div>
 
 		</section>
 	`,
@@ -26,18 +29,17 @@ export default {
 		}
 	},
 	methods: {
-		setSelectedIcon(idx, icon) {
-			let iconClass = icon + ' fa-lg';
-			if (idx === this.newNote.settings.noteType) iconClass += ' selected';
-			return iconClass;
+		setSelectedType(noteType, noteIcon) {
+			return (this.newNote.settings.noteType === noteType)
+				? noteIcon + ' fa-lg selected'
+				: noteIcon + ' fa-lg';
 		},
-		changeSelectedType(idx) {
-			this.newNote.settings.noteType = idx;
-			this.$refs.newNote.focus();
+		updateSelectedType(noteType) {
+			this.newNote.settings.noteType = noteType;
+			this.$refs.newNoteEl.focus();
 		},
 		addNote() {
-			console.log('save from add new cmp...');
-			eventBus.$emit(EVENT_NOTE_ADDED, [ this.newNote, this.userData ]);
+			eventBus.$emit(EVENT_NOTE_ADDED, this.newNote, this.userData);
 			this.newNote = notesService.emptyNote();
 			this.userData = '';
 		},

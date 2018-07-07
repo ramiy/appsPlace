@@ -8,7 +8,7 @@
 	transition: 0.3s;
 	border-width: 2px;
 	border-style: solid;
-	border-color: #fff;
+	border-color: transparent;
 }
 
 .notes-app .note-type:hover {
@@ -21,7 +21,14 @@
 	border-radius: 5px;
 }
 
-/********** ITEM ACTIONS **********/
+/********** NOTES LIST **********/
+
+.notes-list h3 {
+	margin-bottom: 2em;
+	font-weight: bold;
+}
+
+/********** NOTE ACTIONS **********/
 
 .note-item-actions {
 	position: relative;
@@ -35,11 +42,11 @@
 
 .note-item-actions i {
 	cursor: pointer;
-	color: #ccc;
+	color: #999;
 }
 
 .note-item-actions i:hover {
-	color: #999;
+	color: #666;
 }
 
 .note-item-actions i.visible {
@@ -67,8 +74,7 @@
 .note-item-actions i.colors .dropdown-content {
 	position: absolute;
 	right: 0;
-    top: 15px;
-	background-color: #fff;
+    top: 2em;
 }
 
 .note-item-actions i.colors span {
@@ -80,14 +86,19 @@
     border: 1px solid #eee;
 }
 
-/********** ADD ITEMS **********/
+.note-item-actions i.colors span:hover,
+.note-item-actions i.colors span.selected {
+	border-color: #000;
+}
+
+/********** ADD NOTES **********/
 
 .notes-add {
 	background-color: #fff;
 	padding: 10px 0;
 	display: inline-block;
 	width: 600px;
-	margin: 0 auto;
+	margin: 0 auto 2em;
 	max-width: 100%;
 }
 
@@ -98,6 +109,8 @@
 	border-color: transparent;
 	outline: none;
 	height: fit-content;
+    width: 100%;
+    max-width: 100%;
 }
 
 .notes-add i {
@@ -108,4 +121,31 @@
 .notes-add i:hover,
 .notes-add i.selected {
 	color: black;
+}
+
+@media only screen and (max-width: 540px) {
+
+	.notes-add {
+		flex-direction: column-reverse;
+		align-items: center;
+	}
+
+	.notes-add input {
+		text-align: center;
+	}
+
+}
+
+/********** Style specific item types **********/
+
+.note-type-list ul li {
+	line-height: 2em;
+}
+
+.note-type-list ul li:not(:last-of-type) {
+	border-bottom: 1px solid #aaa;
+}
+
+.note-type-list ul li.completed {
+	text-decoration: line-through;
 }
