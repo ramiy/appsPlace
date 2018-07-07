@@ -22,11 +22,11 @@ export default {
 	data() {
 		return {
 			noteTypes: {
-				text: { icon: 'fas fa-font', placeholder: 'What’s on your mind...' },
-				image: { icon: 'far fa-image', placeholder: 'Enter image URL...' },
-				video: { icon: 'fab fa-youtube', placeholder: 'Enter video URL...' },
-				audio: { icon: 'fas fa-volume-up', placeholder: 'Enter audio URL...' },
-				list: { icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
+				text: { field: 'text', icon: 'fas fa-font', placeholder: 'What’s on your mind...' },
+				image: { field: 'url', icon: 'far fa-image', placeholder: 'Enter image URL...' },
+				video: { field: 'url', icon: 'fab fa-youtube', placeholder: 'Enter video URL...' },
+				audio: { field: 'url', icon: 'fas fa-volume-up', placeholder: 'Enter audio URL...' },
+				list: { field: 'text', icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
 			},
 			noteCmps: null,
 		}
