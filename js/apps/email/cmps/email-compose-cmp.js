@@ -1,5 +1,5 @@
 import emailService from '../services/email-service.js'
-import { eventBus, EVENT_EMAIL_SAVED } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EMAIL_SAVED , EVENT_EMAIL_INBOX } from '../../../services/eventbus-service.js'
 
 export default {
 
@@ -17,7 +17,7 @@ export default {
 			</div>
 			<div class="email-controls">
 					<button @click="sendEmail" class="send-btn">Send</button>
-					<div class="delete"><i class="fas fa-trash fa-2x"></i></li></div>
+					<div class="delete" @click="goToInbox"><i class="fas fa-trash fa-2x"></i></li></div>
 				</div>
 		</section>
     
@@ -37,7 +37,8 @@ export default {
 			eventBus.$emit(EVENT_EMAIL_SAVED, this.newEmail)
 		},
 		goToInbox() {
-			this.$emit('go-to-inbox')
+			eventBus.$emit(EVENT_EMAIL_INBOX)
 		}
-	}
+	},
+	
 }

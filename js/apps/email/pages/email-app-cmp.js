@@ -4,7 +4,7 @@ import emailDetails from '../../email/cmps/email-details-cmp.js'
 import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
-import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED  } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU  } from '../../../services/eventbus-service.js'
 
 
 
@@ -12,12 +12,13 @@ export default {
 	template: `
 		<section class="email-app">
 			<div class="header">
+				<div @click="isMenuOpen=true" class="toggle-menu"><i class="fas fa-bars fa-3x"></i></div>
 				<email-filter></email-filter>
 			</div>
 
 			<div class="wrapper flex">
 
-				<email-menu @compose="compose"></email-menu>
+				<email-menu :class="menuClass" @compose="compose"></email-menu>
 
 				<email-list :emails="emailsToShow" 
 					@emailselceted="emailSelected" 
@@ -46,6 +47,7 @@ export default {
 			selectedEmail: null,
 			filter: null,
 			isCompose: false,
+			isMenuOpen: false
 		}
 	},
 	created() {
@@ -58,6 +60,8 @@ export default {
 			})
 		eventBus.$on(EVENT_EMAIL_DELETED, (id) => this.deleteEmail(id));
 		eventBus.$on(EVENT_EMAIL_SAVED, (newEmail) => this.sendEmail(newEmail));
+		eventBus.$on(EVENT_EMAIL_INBOX, () => this.goToInbox());
+		eventBus.$on(EVENT_EMAIL_TOGGLE_MENU, () => this.isMenuOpen = !this.isMenuOpen);
 
 
 	},
@@ -97,11 +101,19 @@ export default {
 		},
 		compose() {
 			this.isCompose = true;
+			this.isMenuOpen = false;
+
 		},
 		sendEmail(newEmail) {
 			emailService.addEmail(newEmail)	
 				.then(() =>
 			{this.isCompose = false})		
+		},
+		goToInbox() {
+			this.isCompose=false;
+			this.selectedEmail = null;
+			this.filter = null;
+			this.isMenuOpen = false;
 		}
 	},
 	computed: {
@@ -113,6 +125,11 @@ export default {
 		},
 		showDetails() {
 			return  !this.isCompose && this.selectedEmail;
+		},
+		menuClass() {
+			return {
+				open: this.isMenuOpen
+			}
 		}
 	},
 	watch: {

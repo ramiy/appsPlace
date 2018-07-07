@@ -27,12 +27,7 @@ export default {
 
 		}
 	},
-	created() {
-		console.log('email preview ', this.body);
 
-	},
-	components: {
-	},
 	methods: {
 		deleteEmail(id) {
 			eventBus.$emit(EVENT_EMAIL_DELETED, id)

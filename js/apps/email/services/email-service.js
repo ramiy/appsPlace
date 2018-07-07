@@ -27,7 +27,9 @@ var emails = [
 	},
 	{
 		subject: 'First email ever!!!',
-		body: 'Hi! this would be ou email',
+		body: `hello
+		How Are you?
+		Good`,
 		isRead: false,
 		sentAt: 153079231839,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
@@ -37,7 +39,7 @@ var emails = [
 	},
 	{
 		subject: 'First email ever!!!',
-		body: 'Hi! this would be ou email',
+		body: `'Hi! this would be ou email'`,
 		isRead: false,
 		sentAt: 153079231839,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
