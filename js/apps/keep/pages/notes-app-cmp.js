@@ -1,8 +1,8 @@
 import notesService from '../services/notes-service.js';
 import {
 	eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED,
-	EVENT_NOTE_MARKED, EVENT_NOTE_STYLED, EVENT_NOTE_CLONED,
-	EVENT_NOTE_DELETED, EVENT_LIST_NOTE_STATUS_CHANGED
+	EVENT_NOTE_MARKED, EVENT_NOTE_STYLED, EVENT_NOTE_EDITING,
+	EVENT_NOTE_CLONED, EVENT_NOTE_DELETED, EVENT_LIST_NOTE_STATUS_CHANGED
 } from '../../../services/eventbus-service.js'
 
 import notesAdd from '../cmps/notes-add-cmp.js';
@@ -22,11 +22,11 @@ export default {
 	data() {
 		return {
 			noteTypes: {
-				text: { icon: 'fas fa-font', placeholder: 'What’s on your mind...' },
-				image: { icon: 'far fa-image', placeholder: 'Enter image URL...' },
-				video: { icon: 'fab fa-youtube', placeholder: 'Enter video URL...' },
-				audio: { icon: 'fas fa-volume-up', placeholder: 'Enter audio URL...' },
-				list: { icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
+				text: { field: 'text', icon: 'fas fa-font', placeholder: 'What’s on your mind...' },
+				image: { field: 'url', icon: 'far fa-image', placeholder: 'Enter image URL...' },
+				video: { field: 'url', icon: 'fab fa-youtube', placeholder: 'Enter video URL...' },
+				audio: { field: 'url', icon: 'fas fa-volume-up', placeholder: 'Enter audio URL...' },
+				list: { field: 'text', icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
 			},
 			noteCmps: null,
 		}
@@ -37,6 +37,7 @@ export default {
 		eventBus.$on(EVENT_NOTE_PINNED, noteId => this.pinNote(noteId));
 		eventBus.$on(EVENT_NOTE_MARKED, noteId => this.markNote(noteId));
 		eventBus.$on(EVENT_NOTE_STYLED, (noteId, bgColor) => this.styleNote(noteId, bgColor));
+		eventBus.$on(EVENT_NOTE_EDITING, noteId => this.editNote(noteId));
 		eventBus.$on(EVENT_NOTE_CLONED, noteId => this.cloneNote(noteId));
 		eventBus.$on(EVENT_NOTE_DELETED, noteId => this.removeNote(noteId));
 		eventBus.$on(EVENT_LIST_NOTE_STATUS_CHANGED, (noteId, listIdx) => this.updateListNoteStatus(noteId, listIdx));
@@ -60,6 +61,9 @@ export default {
 		},
 		cloneNote(noteId) {
 			notesService.cloneNote(noteId);
+		},
+		editNote(noteId) {
+			notesService.editNote(noteId);
 		},
 		removeNote(noteId) {
 			notesService.removeNote(noteId);

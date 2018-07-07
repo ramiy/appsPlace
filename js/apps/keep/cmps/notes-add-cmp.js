@@ -6,7 +6,7 @@ export default {
 	template: `
 		<section class="notes-add flex space-between">
 
-			<input type="text" autocomplete="off" v-model="userData"
+			<input :type="fieldType" autocomplete="off" v-model="userData"
 				:placeholder="placeholder" @keyup.enter="addNote" ref="newNoteEl" />
 
 			<div class="flex">
@@ -24,6 +24,9 @@ export default {
 		}
 	},
 	computed: {
+		fieldType() {
+			return this.noteTypes[this.newNote.settings.noteType].field;
+		},
 		placeholder() {
 			return this.noteTypes[this.newNote.settings.noteType].placeholder;
 		}

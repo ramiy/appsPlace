@@ -1,12 +1,13 @@
-import utilsService from '../services/notes-service.js';
+import utilsService from '../../../services/utils-service.js';
 
 var notes = [
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -16,11 +17,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -30,11 +32,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ffff88',
@@ -44,11 +47,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -58,11 +62,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'video',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -72,11 +77,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -86,11 +92,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -100,11 +107,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -114,11 +122,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ffcc88',
@@ -128,11 +137,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'video',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -142,11 +152,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: true,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ffff88',
@@ -156,11 +167,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'audio',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#dddddd',
@@ -170,11 +182,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -184,11 +197,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -198,11 +212,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'list',
 			pinned: false,
 			marked: true,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#ccff99',
@@ -217,11 +232,12 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '#fffff',
@@ -238,6 +254,7 @@ function emptyNote() {
 			noteType: 'text',
 			pinned: false,
 			marked: false,
+			editMode: false,
 		},
 		styles: {
 			backgroundColor: '',
@@ -268,7 +285,7 @@ function cloneNote(id) {
 		.then(note => {
 			let oldNoteIdx = notes.findIndex(note => note.id === id);
 			let newNote = JSON.parse(JSON.stringify(note));
-			newNote.id = makeId();
+			newNote.id = utilsService.makeId();
 			notes.splice(oldNoteIdx, 0, newNote)
 		});
 }
@@ -299,7 +316,7 @@ function saveNote(note, data) {
 		let noteIdx = notes.findIndex(currNote => currNote.id === note.id);
 		notes.splice(noteIdx, 1, note);
 	} else {
-		note.id = makeId();
+		note.id = utilsService.makeId();
 		notes.unshift(note);
 	}
 	return Promise.resolve(note);
@@ -320,6 +337,11 @@ function styleNote(id, bgColor) {
 		.then(note => note.styles.backgroundColor = bgColor);
 }
 
+function editNote(id) {
+	return getNoteById(id)
+		.then(note => note.settings.editMode = !note.settings.editMode);
+}
+
 function updateListNoteStatus(id, listIdx) {
 	return getNoteById(id)
 		.then(note => note.data.list[listIdx].completed = !note.data.list[listIdx].completed);
@@ -335,18 +357,6 @@ export default {
 	pinNote,
 	markNote,
 	styleNote,
+	editNote,
 	updateListNoteStatus,
-}
-
-
-
-function makeId(length = 20) {
-	let text = "";
-	let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-	for (let i = 0; i < length; i++) {
-		text += possible.charAt(Math.floor(Math.random() * possible.length));
-	}
-
-	return text;
 }

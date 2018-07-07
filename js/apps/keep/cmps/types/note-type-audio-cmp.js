@@ -1,4 +1,5 @@
 import noteItemActions from '../notes-item-actions-cmp.js';
+import noteEdit from '../notes-edit-cmp.js';
 
 export default {
 	props: ['note', 'noteTypesInfo'],
@@ -13,9 +14,12 @@ export default {
 
 			<note-item-actions :note="note" :noteTypesInfo="noteTypesInfo"></note-item-actions>
 
+			<note-edit :note="note" v-if="note.settings.editMode"></note-edit>
+
 		</section>
 	`,
 	components: {
-		noteItemActions
+		noteItemActions,
+		noteEdit,
 	}
 }
