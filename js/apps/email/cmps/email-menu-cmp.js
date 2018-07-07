@@ -4,7 +4,7 @@ export default {
 	template: `
 		<section class="email-menu">
          
-               <button class="compose-btn"> <i class="fas fa-plus"></i>Compose</button>
+               <button class="compose-btn" @click="$emit('compose')"> <i class="fas fa-plus"></i>Compose</button>
                <ul>
                    <li class="selected"> <i class="fas fa-inbox"></i>Inbox</li>
                    <li> <i class="fas fa-star"></i>Starred</li>

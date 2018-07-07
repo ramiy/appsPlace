@@ -5,7 +5,7 @@ export default {
     props: ['emails'],
 
 	template: `
-		<section class="email-list">
+		<section class="email-list email-main-section">
 			<ul>
 				<li v-for="email in emails">
 					<email-preview :key="email.id" @toggle-read="toggleRead" @delete-email="deleteEmail" :email="email" @click.native="emailSelected(email.id)"></email-preview>

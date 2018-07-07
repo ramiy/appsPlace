@@ -2,7 +2,7 @@ export default {
     props: ['email'],
 
 	template: `
-		<section class="email-details">
+		<section class="email-details email-main-section">
 			<div class="header">
 				<div class="subject">{{email.subject}}</div>
 				<h2>{{email.from.name}} </h2>	<p><{{email.from.email}}></p>

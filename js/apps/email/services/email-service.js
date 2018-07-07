@@ -103,6 +103,8 @@ var emails = [
 	var temp = utilService.loadFromStorage(STORAGE_KEY);
 	if (temp) {
 		emails = temp;
+	} else {
+		saveEmails()
 	}
 
 })();
@@ -135,10 +137,34 @@ function toggleRead(id, isRead) {
 			saveEmails()
 		})
 }
+function emptyEmail() {
+	return { 	
+		subject: '',
+		body: '',
+		isRead: false,
+		sentAt: null,
+		from: { name: 'Itai', email: 'itai@gmail.com' },
+		to: { name: 'Itai', email: 'itai@gmail.com' },
+		id: ''
 
+	}
+	
+}
+
+function addEmail(newEmail) {
+	newEmail.id = utilService.makeId(6);
+	newEmail.sentAt = Date.now()
+	emails.unshift(newEmail)
+	saveEmails()
+	console.log(emails);
+	
+	return Promise.resolve();
+}
 export default {
 	query,
 	getEmailById,
 	deleteEmail,
-	toggleRead
+	toggleRead,
+	emptyEmail,
+	addEmail
 }

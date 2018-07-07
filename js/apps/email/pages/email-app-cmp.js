@@ -3,6 +3,7 @@ import emailList from '../../email/cmps/email-list-cmp.js'
 import emailDetails from '../../email/cmps/email-details-cmp.js'
 import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
+import emailCompose from '../../email/cmps/email-compose-cmp.js'
 
 export default {
 	template: `
@@ -13,21 +14,23 @@ export default {
 
 			<div class="wrapper flex">
 
-				<email-menu></email-menu>
+				<email-menu @compose="compose"></email-menu>
 
 				<email-list :emails="emailsToShow" 
 					@emailselceted="emailSelected" 
-					v-if="!selectedEmail"  
+					v-if="showList"  
 					@delete-email="deleteEmail"				
 					@toggle-read="toggleRead">					
 				</email-list>
 
 				<email-details 
 					:email="selectedEmail" 
-					v-if="selectedEmail" 
+					v-if="showDetails" 
 					@delete-email="deleteEmail" 
 					@email-read="markAsRead">
 				</email-details>
+				<email-compose v-if="isCompose"  @send-email="sendEmail"></email-compose>
+
 			</div>
         
         </section>
@@ -41,6 +44,7 @@ export default {
 			emails: [],
 			selectedEmail: null,
 			filter: null,
+			isCompose: false,
 		}
 	},
 	created() {
@@ -62,12 +66,12 @@ export default {
 
 		},
 		markAsRead(id) {
-			emailService.toggleRead(id, true) 
+			emailService.toggleRead(id, true)
 		},
 		toggleRead(id, isRead) {
 			console.log('pipi');
-			
-			emailService.toggleRead(id, isRead) 
+
+			emailService.toggleRead(id, isRead)
 
 
 		},
@@ -88,11 +92,25 @@ export default {
 						this.$router.push(`/email`);
 					}
 				})
+		},
+		compose() {
+			this.isCompose = true;
+		},
+		sendEmail(newEmail) {
+			emailService.addEmail(newEmail)	
+				.then(() =>
+			{this.isCompose = false})		
 		}
 	},
 	computed: {
 		emailsToShow() {
 			return this.emails;
+		},
+		showList() {
+			return !this.selectedEmail && !this.isCompose;
+		},
+		showDetails() {
+			return  !this.isCompose && this.selectedEmail;
 		}
 	},
 	watch: {
@@ -118,7 +136,8 @@ export default {
 		emailList,
 		emailDetails,
 		emailFilter,
-		emailMenu
+		emailMenu,
+		emailCompose
 
 
 	}
