@@ -135,3 +135,17 @@
 	}
 
 }
+
+/********** Style specific item types **********/
+
+.note-type-list ul li {
+	line-height: 2em;
+}
+
+.note-type-list ul li:not(:last-of-type) {
+	border-bottom: 1px solid #aaa;
+}
+
+.note-type-list ul li.completed {
+	text-decoration: line-through;
+}

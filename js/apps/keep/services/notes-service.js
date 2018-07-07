@@ -208,7 +208,12 @@ var notes = [
 			backgroundColor: '#ccff99',
 		},
 		data: {
-			list: [ 'eat()', 'sleep()', 'code()', 'repeat()' ]
+			list: [
+				{ text: 'eat()', completed: false },
+				{ text: 'sleep()', completed: true },
+				{ text: 'code()', completed: false },
+				{ text: 'repeat()', completed: false },
+			]
 		},
 	},
 	{
@@ -281,7 +286,10 @@ function saveNote(note, data) {
 			note.data.src = data;
 			break;
 		case 'list':
-			note.data.list = data.split(',');
+			let listArr = data.split(',');
+			note.data.list = listArr.map(item => {
+				return { text: item, completed: false };
+			});
 			break;
 		// default:
 		// 	return Promise.reject();
@@ -312,6 +320,11 @@ function styleNote(id, bgColor) {
 		.then(note => note.styles.backgroundColor = bgColor);
 }
 
+function updateListNoteStatus(id, listIdx) {
+	return getNoteById(id)
+		.then(note => note.data.list[listIdx].completed = !note.data.list[listIdx].completed);
+}
+
 export default {
 	emptyNote,
 	query,
@@ -322,6 +335,7 @@ export default {
 	pinNote,
 	markNote,
 	styleNote,
+	updateListNoteStatus,
 }
 
 

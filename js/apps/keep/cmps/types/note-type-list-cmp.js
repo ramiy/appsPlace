@@ -1,3 +1,4 @@
+import { eventBus, EVENT_LIST_NOTE_STATUS_CHANGED } from '../../../../services/eventbus-service.js'
 import noteItemActions from '../notes-item-actions-cmp.js';
 
 export default {
@@ -8,8 +9,10 @@ export default {
 			:style="{'background-color': note.styles.backgroundColor }">
 
 			<ul>
-				<li v-for="list in note.data.list">
-					<p>{{list}}</p>
+				<li v-for="(listItem, idx) in note.data.list"
+					:class="statusClass(listItem.completed)"
+					@click="updateStatus(idx)">
+						{{listItem.text}}
 				</li>
 			</ul>
 
@@ -19,5 +22,14 @@ export default {
 	`,
 	components: {
 		noteItemActions
+	},
+	methods: {
+		statusClass(status) {
+			return (status) ? 'completed' : '';
+		},
+		updateStatus(listIdx) {
+			console.log('change status');
+			eventBus.$emit(EVENT_LIST_NOTE_STATUS_CHANGED, this.note.id, listIdx);
+		}
 	}
 }
