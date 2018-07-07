@@ -9,8 +9,8 @@ export default {
 			<input type="type" v-model="userData" :placeholder="placeholder" @keyup.enter="addNote" ref="newNoteEl" />
 
 			<div class="flex">
-				<template v-for="(type, idx) in noteTypes">
-					<i :class="setSelectedIcon(idx, type.icon)" @click="changeSelectedType(idx)"></i> 
+				<template v-for="(noteType, idx) in noteTypes">
+					<i :class="setSelectedType(idx, noteType.icon)" @click="updateSelectedType(idx)"></i> 
 				</template>
 			</div>
 
@@ -28,12 +28,12 @@ export default {
 		}
 	},
 	methods: {
-		setSelectedIcon(idx, icon) {
+		setSelectedType(idx, icon) {
 			let iconClass = icon + ' fa-lg';
 			if (idx === this.newNote.settings.noteType) iconClass += ' selected';
 			return iconClass;
 		},
-		changeSelectedType(idx) {
+		updateSelectedType(idx) {
 			this.newNote.settings.noteType = idx;
 			this.$refs.newNoteEl.focus();
 		},
