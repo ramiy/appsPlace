@@ -67,6 +67,10 @@ audio {
 	align-content: flex-end;
 }
 
+.align-items-center {
+	align-items: center;
+}
+
 .dropdown:hover > .dropdown-content {
 	opacity: 1;
 	visibility: visible;
@@ -97,6 +101,36 @@ header a {
 
 header li {
 	padding: 0 1em;
+}
+
+header .search input {
+	display: block;
+	padding: 0.5em 1em;
+	line-height: 1.5em;
+	border-color: transparent;
+	background-color: rgba(255,255,255,0.25);
+	height: fit-content;
+	width: 300px;
+	max-width: 100%;
+}
+
+@media only screen and (max-width: 540px) {
+
+	header {
+		flex-flow: row wrap;
+	}
+
+	header .search {
+		order: 3;
+		flex-grow: 1;
+		text-align: center;
+		padding-top: 1.5em;
+	}
+
+	header .search input {
+		width: 100%;
+	}
+
 }
 
 /********** MAIN **********/
