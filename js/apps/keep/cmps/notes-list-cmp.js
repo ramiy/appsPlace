@@ -9,14 +9,14 @@ export default {
 	template: `
 		<section class="notes-list" v-if="noteCmps">
 
-			<h3 v-if="pinnedNotesToShow"> Pinned Notes </h3>
-			<div v-if="pinnedNotesToShow" class="masonry">
+			<h3 v-if="pinnedNotesToShow.length > 0"> Pinned Notes </h3>
+			<div v-if="pinnedNotesToShow.length > 0" class="masonry">
 				<component v-for="(cmp, idx) in pinnedNotesToShow" :is="'note-type-'+cmp.settings.noteType"
 					:key="idx" :note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
 				</component>
 			</div>
 
-			<h3 v-if="pinnedNotesToShow"> Other Notes </h3>
+			<h3 v-if="pinnedNotesToShow.length > 0"> Other Notes </h3>
 			<div v-if="notesToShow" class="masonry">
 				<component v-for="(cmp, idx) in notesToShow" :is="'note-type-'+cmp.settings.noteType"
 					:key="idx" :note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
