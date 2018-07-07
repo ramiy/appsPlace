@@ -37,7 +37,7 @@
 }
 
 .email-preview .from {
-    flex: 0 0 275px;
+    /* flex: 0 0 275px; */
 }
 
 .email-preview .content .body {
@@ -46,7 +46,7 @@
 }
 
 .email-preview .sent-at {
-    flex: 0 0 130px;
+    /* flex: 0 0 130px; */
 }
 
 .email-preview .content {
