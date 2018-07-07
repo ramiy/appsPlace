@@ -292,7 +292,7 @@ function saveNote(note, data) {
 		notes.splice(noteIdx, 1, note);
 	} else {
 		note.id = makeId();
-		notes.push(note);
+		notes.unshift(note);
 	}
 	return Promise.resolve(note);
 }
