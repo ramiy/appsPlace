@@ -6,7 +6,8 @@ export default {
 	template: `
 		<section class="notes-add flex space-between">
 
-			<input type="type" v-model="userData" :placeholder="placeholder" @keyup.enter="addNote" ref="newNoteEl" />
+			<input type="text" autocomplete="off" v-model="userData"
+				:placeholder="placeholder" @keyup.enter="addNote" ref="newNoteEl" />
 
 			<div class="flex">
 				<template v-for="(noteType, idx) in noteTypes">
@@ -28,13 +29,13 @@ export default {
 		}
 	},
 	methods: {
-		setSelectedType(idx, icon) {
-			let iconClass = icon + ' fa-lg';
-			if (idx === this.newNote.settings.noteType) iconClass += ' selected';
-			return iconClass;
+		setSelectedType(noteType, noteIcon) {
+			return (this.newNote.settings.noteType === noteType)
+				? noteIcon + ' fa-lg selected'
+				: noteIcon + ' fa-lg';
 		},
-		updateSelectedType(idx) {
-			this.newNote.settings.noteType = idx;
+		updateSelectedType(noteType) {
+			this.newNote.settings.noteType = noteType;
 			this.$refs.newNoteEl.focus();
 		},
 		addNote() {
