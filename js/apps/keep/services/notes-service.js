@@ -1,8 +1,8 @@
-import utilsService from '../services/notes-service.js';
+import utilsService from '../../../services/utils-service.js';
 
 var notes = [
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
@@ -16,7 +16,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
@@ -30,7 +30,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
@@ -44,7 +44,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
@@ -58,7 +58,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'video',
 			pinned: false,
@@ -72,7 +72,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
@@ -86,7 +86,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
@@ -100,7 +100,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
@@ -114,7 +114,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
@@ -128,7 +128,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'video',
 			pinned: false,
@@ -142,7 +142,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: true,
@@ -156,7 +156,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'audio',
 			pinned: false,
@@ -170,7 +170,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'image',
 			pinned: false,
@@ -184,7 +184,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
@@ -198,7 +198,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'list',
 			pinned: false,
@@ -217,7 +217,7 @@ var notes = [
 		},
 	},
 	{
-		id: makeId(),
+		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
 			pinned: false,
@@ -268,7 +268,7 @@ function cloneNote(id) {
 		.then(note => {
 			let oldNoteIdx = notes.findIndex(note => note.id === id);
 			let newNote = JSON.parse(JSON.stringify(note));
-			newNote.id = makeId();
+			newNote.id = utilsService.makeId();
 			notes.splice(oldNoteIdx, 0, newNote)
 		});
 }
@@ -299,7 +299,7 @@ function saveNote(note, data) {
 		let noteIdx = notes.findIndex(currNote => currNote.id === note.id);
 		notes.splice(noteIdx, 1, note);
 	} else {
-		note.id = makeId();
+		note.id = utilsService.makeId();
 		notes.unshift(note);
 	}
 	return Promise.resolve(note);
@@ -336,17 +336,4 @@ export default {
 	markNote,
 	styleNote,
 	updateListNoteStatus,
-}
-
-
-
-function makeId(length = 20) {
-	let text = "";
-	let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-	for (let i = 0; i < length; i++) {
-		text += possible.charAt(Math.floor(Math.random() * possible.length));
-	}
-
-	return text;
 }
