@@ -4,7 +4,7 @@ import noteEdit from '../notes-edit-cmp.js';
 export default {
 	props: ['note', 'noteTypesInfo'],
 	template: `
-		<section class="note-type-video note-type masonry-item"
+		<section class="note-type note-type-video"
 			:class="{marked: note.settings.marked}"
 			:style="{'background-color': note.styles.backgroundColor }">
 
