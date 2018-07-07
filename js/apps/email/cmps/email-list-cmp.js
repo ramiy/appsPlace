@@ -6,7 +6,6 @@ export default {
 
 	template: `
 		<section class="email-list">
-			LIST
 			<ul>
 				<li v-for="email in emails">
 					<email-preview :key="email.id" @delete-email="deleteEmail" :email="email" @click.native="emailSelected(email.id)"></email-preview>

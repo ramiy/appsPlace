@@ -35,6 +35,67 @@ var emails = [
 		id: 'EfrK0'
 
 	},
+	{
+		subject: 'First email ever!!!',
+		body: 'Hi! this would be ou email',
+		isRead: false,
+		sentAt: 153079231839,
+		from: { name: 'Itai', email: 'itai@gmail.com' },
+		to: { name: 'rami', email: 'rami@gmail.com' },
+		id: 'EsdrK0'
+
+	},
+	{
+		subject: 'First email ever!!!',
+		body: 'Hi! this would be ou email',
+		isRead: false,
+		sentAt: 153079231839,
+		from: { name: 'Itai', email: 'itai@gmail.com' },
+		to: { name: 'rami', email: 'rami@gmail.com' },
+		id: 'EfrgzgK0'
+
+	},
+	{
+		subject: 'First email ever!!!',
+		body: 'Hi! this would be ou email',
+		isRead: false,
+		sentAt: 153079231839,
+		from: { name: 'Itai', email: 'itai@gmail.com' },
+		to: { name: 'rami', email: 'rami@gmail.com' },
+		id: 'sfsfsF'
+
+	},
+	{
+		subject: 'First email ever!!!',
+		body: 'Hi! this would be ou email',
+		isRead: false,
+		sentAt: 153079231839,
+		from: { name: 'Itai', email: 'itai@gmail.com' },
+		to: { name: 'rami', email: 'rami@gmail.com' },
+		id: 'sdfzsf'
+
+	},
+	{
+		subject: 'First email ever!!!',
+		body: 'Hi! this would be ou email',
+		isRead: false,
+		sentAt: 153079231839,
+		from: { name: 'Itai', email: 'itai@gmail.com' },
+		to: { name: 'rami', email: 'rami@gmail.com' },
+		id: 'EfdzfvrK0'
+
+	},
+	{
+		subject: 'First email ever!!!',
+		body: 'Hi! this would be ou email',
+		isRead: false,
+		sentAt: 153079231839,
+		from: { name: 'Itai', email: 'itai@gmail.com' },
+		to: { name: 'rami', email: 'rami@gmail.com' },
+		id: 'sdfsd'
+
+	},
+	
 
 
 ];
