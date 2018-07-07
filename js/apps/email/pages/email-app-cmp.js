@@ -18,7 +18,8 @@ export default {
 				<email-list :emails="emailsToShow" 
 					@emailselceted="emailSelected" 
 					v-if="!selectedEmail"  
-					@delete-email="deleteEmail">					
+					@delete-email="deleteEmail"				
+					@toggle-read="toggleRead">					
 				</email-list>
 
 				<email-details 
@@ -62,6 +63,13 @@ export default {
 		},
 		markAsRead(id) {
 			emailService.toggleRead(id, true) 
+		},
+		toggleRead(id, isRead) {
+			console.log('pipi');
+			
+			emailService.toggleRead(id, isRead) 
+
+
 		},
 		deleteEmail(id) {
 			emailService.deleteEmail(id)

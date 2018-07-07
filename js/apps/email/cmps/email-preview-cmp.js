@@ -13,8 +13,10 @@ export default {
 			<span class="sent-at">
 				{{sentAt}}
 			</span>
-		
-	<!-- <button @click.stop="deleteEmail(email.id)">delete</button> -->
+			<ul class="action">
+				<li @click.stop="deleteEmail(email.id)" title="Delete Email"><i class="fas fa-trash fa-lg"></i></li>
+				<li@click.stop="toggleRead(email.id, !isRead)"><i :class="isRead? 'fa-envelope' :  'fa-envelope-open'" class="fas fa-lg" :title="title"></i></li>
+			</ul>
 		</section>
     
     `,
@@ -32,6 +34,10 @@ export default {
 	methods: {
 		deleteEmail(id) {
 			this.$emit('delete-email', id)
+		},
+		toggleRead(id, isRead) {
+			this.$emit('toggle-read', id, isRead)
+
 		}
 	},
 	computed: {
@@ -58,6 +64,10 @@ export default {
 			}
 
 
+		},
+		title() {
+			if( this.isRead ) return 'Mark as unread'
+			else return 'Mark as read'
 		}
 
 
