@@ -1,21 +1,33 @@
 import emailService from '../services/email-service.js'
 import emailList from '../../email/cmps/email-list-cmp.js'
 import emailDetails from '../../email/cmps/email-details-cmp.js'
+import emailFilter from '../../email/cmps/email-filter-cmp.js'
+import emailMenu from '../../email/cmps/email-menu-cmp.js'
 
 export default {
 	template: `
 		<section class="email-app">
-			<h1>Emails App</h1>
-			<email-list :emails="emailsToShow" @emailselceted="emailSelected" v-if="!selectedEmail"  @delete-email="deleteEmail">
+			<div class="header">
+				<email-filter></email-filter>
+			</div>
 
-			</email-list>
-			<email-details 
-				:email="selectedEmail" 
-				v-if="selectedEmail" 
-				@delete-email="deleteEmail" 
-				@email-read="markAsRead"
-				>
-			</email-details>
+			<div class="wrapper flex">
+
+				<email-menu></email-menu>
+
+				<email-list :emails="emailsToShow" 
+					@emailselceted="emailSelected" 
+					v-if="!selectedEmail"  
+					@delete-email="deleteEmail">					
+				</email-list>
+
+				<email-details 
+					:email="selectedEmail" 
+					v-if="selectedEmail" 
+					@delete-email="deleteEmail" 
+					@email-read="markAsRead">
+				</email-details>
+			</div>
         
         </section>
     
@@ -49,7 +61,6 @@ export default {
 
 		},
 		markAsRead(id) {
-			debugger;
 			emailService.toggleRead(id, true) 
 		},
 		deleteEmail(id) {
@@ -97,7 +108,9 @@ export default {
 	},
 	components: {
 		emailList,
-		emailDetails
+		emailDetails,
+		emailFilter,
+		emailMenu
 
 
 	}

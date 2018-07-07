@@ -1,18 +1,24 @@
 /* EMAIL-APP-CMP */
 .email-app {
-	max-width: 1400px;
-	margin: 0 auto;
+	/* max-width: 1400px; */
+    margin: 0 auto;
+    background: white;
+}
+.email-app > .header {
+    background: white;
+    padding: 10px;
+    border-bottom:3px solid #f4f6f7;
 }
 
 /* EMAIL-LIST-CMP  */
 
-.email-list li {
-    border-top: 1px solid black;
+.email-list li:not(:first-child) {
+    border-top: 2px solid #e3e8ea;
     cursor: pointer;
 }
 
 .email-list li:last-child {
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #e3e8ea;
 }
 
 /* EMAIL-PREVIEW-CMP */
@@ -99,4 +105,95 @@
 
 .email-details main {
     padding: 20px 40px;
+}
+
+/* email-filter-cmp */
+.email-filter{
+    margin: 0 auto;
+    width: 720px;
+    position: relative;
+}
+.email-filter input {
+    min-width: 0;
+    width: 100%;
+    background-color:#f4f6f7; 
+    border: 0;
+    padding: 11px 30px 11px 50px;
+    font-size: 1.5rem;
+}
+.email-filter input:focus {
+    background: white;
+    outline: 3px solid#f4f6f7;
+}
+.email-filter i {
+    position: absolute;
+    top: 50%;
+   ;
+    color: #818181;
+    transform: translate(0, -50%);
+    padding: 20px 0 20px 15px;
+
+}
+
+.email-filter i:hover {
+    color:black;
+    cursor: pointer;
+}
+
+.email-app .wrapper {
+    width: 100%;
+    align-items: flex-start
+ }
+ .email-menu {
+     /* flex-basis: 0 0 10%; */
+     width: 20%;
+     margin-right: 20px;
+ }
+ .email-menu ul {
+    border-bottom:1px solid #e3e8ea;
+ }
+ .email-menu li {
+     width: 100%;
+     cursor: pointer;
+     padding: 10px 30px;
+     border-top-right-radius: 100px;
+     border-bottom-right-radius: 100px;
+ }    
+ .email-menu li:hover {
+    background-color: #f5f7f7;
+ }
+
+ .email-menu li.selected:hover,
+ .email-menu li.selected {
+     background-color: #fce8e6;
+     color:#d93025;
+     font-weight: bold;
+ }
+ .email-list {
+     /* flex: 0 0 50%; */
+     width: 80%;
+ }
+ .email-menu li i {
+     margin-right: 10px;
+ }
+
+.email-menu li:not(.selected) i {
+    color: #767676 ;
+}
+.email-menu .compose-btn {
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149);
+    background: white;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    border-radius: 50px;
+    border: 0;
+    color: #5f6368;
+    cursor: pointer;
+    margin: 20px;
+}
+.email-menu .compose-btn i {
+    margin-right: 10px;
+}
+.email-menu .compose-btn:hover {
+    color:#d93025;
 }
