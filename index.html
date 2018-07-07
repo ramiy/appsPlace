@@ -15,11 +15,15 @@
 
 	<div id="app">
 
-		<header class="flex space-between">
+		<header class="flex space-between align-items-center">
 
 			<h1>
-				<a href="#">Apps Place</a>
+				<router-link to="/">Apps Place</router-link>
 			</h1>
+
+			<div class="search">
+				<input type="search" placeholder="Search" ref="search" />
+			</div>
 
 			<nav>
 				<ul class="inline-list">
