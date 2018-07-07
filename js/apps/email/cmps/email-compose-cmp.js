@@ -1,4 +1,6 @@
 import emailService from '../services/email-service.js'
+import { eventBus, EVENT_EMAIL_SAVED } from '../../../services/eventbus-service.js'
+
 export default {
 
 	template: `
@@ -10,7 +12,7 @@ export default {
             <div class="input subject"><input type="text" placeholder="Subject"  v-model="newEmail.subject"></div>
             <div  class="body">
 				
-				<textarea   v-model="newEmail.body"></textarea>
+				<textarea  rows="10" v-model="newEmail.body"></textarea>
 			
 			</div>
 			<div class="email-controls">
@@ -32,7 +34,7 @@ export default {
 	},
 	methods: {
 		sendEmail() {
-			this.$emit('send-email', this.newEmail)
+			eventBus.$emit(EVENT_EMAIL_SAVED, this.newEmail)
 		},
 		goToInbox() {
 			this.$emit('go-to-inbox')

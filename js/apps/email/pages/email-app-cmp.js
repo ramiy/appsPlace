@@ -4,6 +4,9 @@ import emailDetails from '../../email/cmps/email-details-cmp.js'
 import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
+import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED  } from '../../../services/eventbus-service.js'
+
+
 
 export default {
 	template: `
@@ -19,17 +22,15 @@ export default {
 				<email-list :emails="emailsToShow" 
 					@emailselceted="emailSelected" 
 					v-if="showList"  
-					@delete-email="deleteEmail"				
 					@toggle-read="toggleRead">					
 				</email-list>
 
 				<email-details 
 					:email="selectedEmail" 
 					v-if="showDetails" 
-					@delete-email="deleteEmail" 
 					@email-read="markAsRead">
 				</email-details>
-				<email-compose v-if="isCompose"  @send-email="sendEmail"></email-compose>
+				<email-compose v-if="isCompose" ></email-compose>
 
 			</div>
         
@@ -50,14 +51,15 @@ export default {
 	created() {
 		let emailId = this.$route.params.emailId;
 		if (emailId) this.checkId(emailId)
-
-
-
 		emailService.query()
 			.then(emails => {
 				this.emails = emails;
 
 			})
+		eventBus.$on(EVENT_EMAIL_DELETED, (id) => this.deleteEmail(id));
+		eventBus.$on(EVENT_EMAIL_SAVED, (newEmail) => this.sendEmail(newEmail));
+
+
 	},
 	methods: {
 		emailSelected(emailId) {

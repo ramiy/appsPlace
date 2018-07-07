@@ -1,3 +1,5 @@
+import { eventBus, EVENT_EMAIL_DELETED } from '../../../services/eventbus-service.js'
+
 export default {
     props: ['email'],
 
@@ -34,7 +36,7 @@ export default {
 	},
 	methods: {
 		deleteEmail(){
-			this.$emit('delete-email', this.email.id)
+			eventBus.$emit(EVENT_EMAIL_DELETED, this.email.id)
 			
 		}
 
