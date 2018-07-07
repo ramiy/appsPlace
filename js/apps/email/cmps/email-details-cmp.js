@@ -11,7 +11,7 @@ export default {
 				<button class="btn-delete" @click="deleteEmail"><i class="fas fa-trash fa-2x"></i></button>
 			</div>
 			<div class="main-details">
-				{{email.body}
+				{{email.body}}
 			</div>
      		
 		
