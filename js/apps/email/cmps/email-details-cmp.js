@@ -6,13 +6,18 @@ export default {
 	template: `
 		<section class="email-details" :class="mainClassObj">
 			<div class="header">
-				<button @click="toggleScreenMode"><i :class="iClassObj"></i></button>
+				
 				<div class="subject">{{email.subject}}</div>
 				<h2>{{email.from.name}} </h2>	<p><{{email.from.email}}></p>
-				<button class="btn-delete" @click="deleteEmail"><i class="fas fa-trash fa-2x"></i></button>
+			
 			</div>
 			<div class="main-details">
 				{{email.body}}
+			</div>
+			<div class="email-details-controls">
+
+				<button class="btn-delete" @click="deleteEmail"><i class="fas fa-trash"></i></button>
+				<button @click="toggleScreenMode"><i :class="iClassObj"></i></button>
 			</div>
      		
 		

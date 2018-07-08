@@ -6,7 +6,7 @@ export default {
                 <i class="fas fa-search  fa-lg" @click="setFilter"></i>
 				<input v-model="filter.txt" type="search" placeholder="Search mail" @keyup.13="setFilter">
 				<h3 @click="show=!show">
-					{{emailStatus}} 
+					<p>{{emailStatus}}</p> <i class="fas fa-sort-down"></i>
 					<ul class="email-status" v-show="show" >
 						<li>
 							<label>

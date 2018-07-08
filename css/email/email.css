@@ -5,7 +5,6 @@
     margin: 0 auto;
     background: #ffffff;
     padding: 10px 10px 30px 10px;
-    margin-top: -1em;
 }
 
 .email-app>.header {
@@ -116,12 +115,16 @@
 .email-preview .action li:hover {
     color: black;
 }
+.email-preview .first-initial {
+	display: none;
+}
 
 /* EMAIL-DEATILS-CMP */
 
 .email-details {
     background-color: white;
     padding: 0px 20px 40px 20px;
+    position: relative;
     /* flex: 0 0 75%;
     max-width: 75%; */
 }
@@ -149,10 +152,14 @@
     color: gray;
 }
 
-.email-details .header .btn-delete {
+.email-details .email-details-controls {
     position: absolute;
     right: 10px;
+    top: 10px;
     background-color: inherit;
+}
+
+.email-details .email-details-controls>button {
     border: 0;
     border-radius: 50%;
     width: 40px;
@@ -161,7 +168,7 @@
     color: #767676;
 }
 
-.email-details .header .btn-delete:hover {
+.email-details .email-details-controls>button:hover {
     background-color: #e8e8e8;
     color: black;
 }
@@ -199,7 +206,7 @@ pre {
     outline: 3px solid#f4f6f7;
 }
 
-.email-filter i {
+.email-filter i.fa-search {
     position: absolute;
     top: 50%;
     ;
@@ -223,29 +230,32 @@ pre {
     width: 100%;
     display: block;
     cursor: pointer;
-    padding: 10px;
+    padding: 20px 10px;
 }
 
 .email-filter h3 {
-    /* width: 50px;
-    height: 50px; */
+    /* width: 100px; */
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     position: relative;
-    padding: 10px;
+	padding: 10px;
+	font-size: 1rem;
 }
 
 .email-filter h3 .email-status {
     position: absolute;
     top: 100%;
     right: -0;
-    background: yellow;
-    width: 100px;
+    background: #fb0;
+    width: 150px;
 }
 
-.email-filter h3 .email-status li {}
+.email-filter h3 .email-status li:not(:last-child) {
+    border-bottom: 1px solid black;
+}
 
 .email-app .wrapper {
     width: 100%;
@@ -329,6 +339,7 @@ pre {
 .email-menu .close-menu {
     display: none;
 }
+
 .compose-btn-cmp {
     position: fixed;
     bottom: 20px;
@@ -339,6 +350,7 @@ pre {
     padding: 15px;
     display: none;
 }
+
 /* EMAIL-COMPOSE-CMP */
 
 .email-compose {
@@ -514,7 +526,8 @@ pre {
         flex-direction: column;
         align-items: flex-start;
         height: 100px;
-        padding: 10px;
+		padding: 10px;
+		padding-left: 80px;
     }
     .email-preview .from {
         flex-basis: 1em;
@@ -522,9 +535,10 @@ pre {
     }
     .email-preview .sent-at {
         position: absolute;
-        top: 2px;
-        right: 0;
-        font-size: 12px;
+        top: 3px;
+        right: 2px;
+		font-size: 12px;
+		color: blue;
     }
     .email-preview .content {
         display: flex;
@@ -548,7 +562,22 @@ pre {
     .compose-btn-cmp {
         display: block;
         cursor: pointer;
-    }
+	}
+	.email-preview .first-initial {
+		position: absolute;
+		top:0;
+		left: 15px;
+		transform: translate(0, 50%);
+		border-radius: 50%;
+		color: white;
+		background: yellow;
+		width: 50px;
+		height: 50px;
+		font-size: 2rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
 .myProgress {
@@ -570,9 +599,7 @@ pre {
 .myBar {
     width: 1%;
     height: 20px;
-    background-color: green;
     text-align: center;
     background-size: 20px 20px;
-    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent)
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent)
 }
-

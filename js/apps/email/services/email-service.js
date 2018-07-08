@@ -12,7 +12,8 @@ var emails = [
 		sentAt: Date.now(),
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: '99Xrb'
+		id: '99Xrb',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -22,7 +23,8 @@ var emails = [
 		sentAt: 1530792318391,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: '9IXrb'
+		id: '9IXrb',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -34,7 +36,8 @@ var emails = [
 		sentAt: 153079231839,
 		from: { name: 'Itai ben yair ben donald trump', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: 'EfrK0'
+		id: 'EfrK0',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -44,7 +47,8 @@ var emails = [
 		sentAt: 153079231839,
 		to: { name: 'Itai', email: 'itai@gmail.com' },
 		from: { name: 'rami', email: 'rami@gmail.com' },
-		id: 'EsdrK0'
+		id: 'EsdrK0',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -54,7 +58,8 @@ var emails = [
 		sentAt: 153079231839,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: 'EfrgzgK0'
+		id: 'EfrgzgK0',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -64,7 +69,8 @@ var emails = [
 		sentAt: 153079231839,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: 'sfsfsF'
+		id: 'sfsfsF',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -74,7 +80,8 @@ var emails = [
 		sentAt: 153079231839,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: 'sdfzsf'
+		id: 'sdfzsf',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -84,7 +91,8 @@ var emails = [
 		sentAt: 153079231839,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: 'EfdzfvrK0'
+		id: 'EfdzfvrK0',
+		color: utilService.getRandomColor()
 
 	},
 	{
@@ -94,7 +102,8 @@ var emails = [
 		sentAt: 153079231839,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
-		id: 'sdfsd'
+		id: 'sdfsd',
+		color: utilService.getRandomColor()
 
 	},
 	
@@ -148,7 +157,8 @@ function emptyEmail() {
 		sentAt: null,
 		from: { name: 'Itai', email: 'itai@gmail.com' },
 		to: { name: 'Itai', email: 'itai@gmail.com' },
-		id: ''
+		id: '',
+		color: ''
 
 	}
 	
@@ -156,6 +166,7 @@ function emptyEmail() {
 
 function addEmail(newEmail) {
 	newEmail.id = utilService.makeId(6);
+	newEmail.color =utilService.getRandomColor()
 	newEmail.sentAt = Date.now()
 	emails.unshift(newEmail)
 	saveEmails()

@@ -21,12 +21,15 @@ export default {
 				<li @click.stop="deleteEmail(email.id)" title="Delete Email"><i class="fas fa-trash fa-lg"></i></li>
 				<li @click.stop="toggleRead(email.id, !isRead)"><i :class="isRead? 'fa-envelope' :  'fa-envelope-open'" class="fas fa-lg" :title="title"></i></li>
 			</ul>
-		
+			<div class="first-initial" :style="styleObj">{{initial}}</div>
 		</section>
     
     `,
 	data() {
 		return {
+			styleObj: {
+				'background-color': this.email.color,
+			}
 
 		}
 	},
@@ -65,9 +68,11 @@ export default {
 		title() {
 			if( this.isRead ) return 'Mark as unread'
 			else return 'Mark as read'
+		},
+		initial() {
+
+			return this.email.from.name.slice(0, 1).toUpperCase()
 		}
-
-
 
 	}
 }
