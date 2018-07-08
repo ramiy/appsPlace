@@ -11,8 +11,8 @@ export default {
 				<h2>{{email.from.name}} </h2>	<p><{{email.from.email}}></p>
 			
 			</div>
-			<div class="main-details">
-				{{email.body}}
+			<div class="main-details" v-html="email.body">
+				<!-- {{email.body}} -->
 			</div>
 			<div class="email-details-controls">
 

@@ -27,13 +27,38 @@
 				<component :is="activeApp + '-filter'"></component>
 			</div>
 
-			<nav>
-				<ul class="inline-list">
+			<nav @click="toggleMenu">
+				<i class="fas fa-th fa-lg"></i>
+				<ul class="inline-list main-nav" v-show="menuDisplay">
 					<li>
-						<router-link to="/email">Email</router-link>
+						<router-link to="/email">
+							<i class="fas fa-envelope fa-2x"></i>
+							Email</router-link>
 					</li>
 					<li>
-						<router-link to="/notes">Notes</router-link>
+						<router-link to="/notes">
+							<i class="fas fa-map-pin fa-2x"></i>Notes</router-link>
+					</li>
+					<li>
+						<i class="fas fa-map-marker-alt fa-2x"></i>Maps
+					</li>
+					<li>
+						<i class="fas fa-calendar-alt fa-2x"></i>Calander
+					</li>
+					<li>
+						<i class="fab fa-youtube fa-2x"></i>Youtube
+					</li>
+					<li>
+						<i class="fas fa-user-tie fa-2x"></i>Contacts
+					</li>
+					<li>
+						<i class="fas fa-camera fa-2x"></i>Photos
+					</li>
+					<li>
+						<i class="fas fa-globe-americas fa-2x"></i>Earth
+					</li>
+					<li>
+						<i class="far fa-newspaper fa-2x"></i>News
 					</li>
 				</ul>
 			</nav>

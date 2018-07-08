@@ -11,7 +11,8 @@ new Vue({
 	el: '#app',
 	router: appRouter,
 	data: {
-		activeApp: ''
+		activeApp: '',
+		menuDisplay: false
 	},
 	components: {
 		notesFilter,
@@ -19,5 +20,10 @@ new Vue({
 	},
 	created() {
 		eventBus.$on(EVENT_ACTIVE_APP_SET, appName => this.activeApp = appName);
+	},
+	methods: {
+		toggleMenu() {
+			this.menuDisplay = !this.menuDisplay;
+		}
 	}
 })
