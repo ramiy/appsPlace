@@ -7,7 +7,7 @@ export default {
 				<input v-model="filter.txt" type="search" placeholder="Search mail" @keyup.13="setFilter">
 				<h3 @click="show=!show">
 					{{emailStatus}} 
-					<ul class="email-status" v-show="show">
+					<ul class="email-status" v-show="show" >
 						<li>
 							<label>
 							All
@@ -25,9 +25,9 @@ export default {
 							
 						</li>
 						<li>
-							<label>
+							<label >
 							Unread
-							<input value="unread" type="radio" v-model="status">
+							<input  value="unread" type="radio" v-model="status">
 
 							</label>
 							
@@ -60,6 +60,12 @@ export default {
 	components: {
 	},
 	methods: {
+		toggleShow() {
+			console.log('toggle');
+			
+			this.show = !this.show
+		
+		},
 		setFilter() {
 			console.log('sssss');
 
@@ -78,7 +84,8 @@ export default {
 	},
 	watch: {
 		status() {
-			this.show = false;
+			this.toggleShow()
+			
 			this.filter.emailStatus = this.status;
 			this.$emit('set-filter', this.filter)
 

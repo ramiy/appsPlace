@@ -12,7 +12,7 @@ export default {
             <div class="input subject"><input type="text" placeholder="Subject"  v-model="newEmail.subject"></div>
             <div  class="body">
 				
-				<textarea  rows="10" v-model="newEmail.body"></textarea>
+				<textarea  rows="10" v-model="newEmail.body" @focus="scrollToView"  ref="bodyInput"></textarea>
 			
 			</div>
 			<div class="email-controls">
@@ -33,6 +33,13 @@ export default {
 		
 	},
 	methods: {
+		scrollToView(){
+			console.log('scrolllll');
+			this.$refs.bodyInput.scrollIntoView();
+			
+					
+		},
+
 		sendEmail() {
 			eventBus.$emit(EVENT_EMAIL_SAVED, this.newEmail)
 		},

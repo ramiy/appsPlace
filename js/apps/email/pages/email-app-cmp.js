@@ -4,6 +4,7 @@ import emailDetails from '../../email/cmps/email-details-cmp.js'
 import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
+import composeBtn from '../../email/cmps/email-compose-btn-cmp.js'
 import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU } from '../../../services/eventbus-service.js'
 
 
@@ -37,7 +38,8 @@ export default {
 				</email-details>
 				-->
 				
-				<email-compose v-if="isCompose" ></email-compose>
+				<email-compose  v-if="isCompose" ></email-compose>
+				<compose-btn @click.native="compose" v-if="!isCompose"></compose-btn>
 
 			</div>
         
@@ -193,7 +195,8 @@ export default {
 		emailDetails,
 		emailFilter,
 		emailMenu,
-		emailCompose
+		emailCompose,
+		composeBtn
 	}
 
 }

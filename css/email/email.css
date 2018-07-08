@@ -10,7 +10,7 @@
 
 .email-app>.header {
     background: white;
-    padding: 10px 0 ;
+    padding: 10px 0;
     border-bottom: 3px solid #f4f6f7;
     position: sticky;
     top: 0;
@@ -18,9 +18,9 @@
 }
 
 .email-main-section {
-    flex: 0 0 75%;
-    max-width: 75%;
+    width: calc(100% - 250px);
 }
+
 .toggle-menu {
     display: none;
 }
@@ -63,6 +63,10 @@
 
 .email-preview .from {
     flex: 0 0 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 1rem;
+    white-space: nowrap;
 }
 
 .email-preview .content .body {
@@ -208,53 +212,53 @@ pre {
     color: black;
     cursor: pointer;
 }
+
 .email-filter input[type=radio] {
     position: absolute;
-top: -9999px;
-left: -9999px;
-
-    
+    top: -9999px;
+    left: -9999px;
 }
+
 .email-filter .email-status label {
     width: 100%;
     display: block;
     cursor: pointer;
     padding: 10px;
 }
+
 .email-filter h3 {
-    width: 50px;
-    height: 50px;
+    /* width: 50px;
+    height: 50px; */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     position: relative;
-
+    padding: 10px;
 }
+
 .email-filter h3 .email-status {
     position: absolute;
     top: 100%;
     right: -0;
     background: yellow;
     width: 100px;
-
 }
-.email-filter h3 .email-status li {
 
-}
+.email-filter h3 .email-status li {}
 
 .email-app .wrapper {
     width: 100%;
     align-items: flex-start;
     justify-content: space-between;
 }
+
 /* EMAIL-MENU-CMP */
 
-
 .email-menu {
-    flex: 0 0 25%;
-    max-width: 25%;
-    width: 25%;
+    flex: 0 0 250px;
+    max-width: 250px;
+    width: 250px;
     position: sticky;
     top: 75px;
 }
@@ -292,7 +296,6 @@ left: -9999px;
     width: 100%;
 }
 
-
 .email-menu>ul li i {
     margin-right: 10px;
     width: 18px;
@@ -322,10 +325,20 @@ left: -9999px;
 .email-menu .compose-btn:hover {
     color: #d93025;
 }
+
 .email-menu .close-menu {
     display: none;
 }
-
+.compose-btn-cmp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #fb0;
+    color: white;
+    border-radius: 50%;
+    padding: 15px;
+    display: none;
+}
 /* EMAIL-COMPOSE-CMP */
 
 .email-compose {
@@ -439,7 +452,6 @@ left: -9999px;
     background-color: #297be6;
 }
 
-
 @media (max-width: 850px) {
     .email-main-section {
         flex: 0 0 100%;
@@ -469,9 +481,6 @@ left: -9999px;
         align-items: center;
         justify-content: center;
         color: #767676;
-
-
-    
     }
     .email-app>.header {
         display: flex;
@@ -483,7 +492,6 @@ left: -9999px;
         margin: 0;
         align-items: center
     }
-
     .email-menu .close-menu {
         position: absolute;
         right: -20px;
@@ -498,20 +506,73 @@ left: -9999px;
         background: white;
         cursor: pointer;
         color: #767676;
-
     }
     .email-app {
-        padding:  0;
+        padding: 0;
+    }
+    .email-preview {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100px;
+        padding: 10px;
+    }
+    .email-preview .from {
+        flex-basis: 1em;
+        width: 100%;
+    }
+    .email-preview .sent-at {
+        position: absolute;
+        top: 2px;
+        right: 0;
+        font-size: 12px;
+    }
+    .email-preview .content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        flex-basis: 100%;
+        position: relative;
+        top: 13px;
+    }
+    .email-preview .content .body {
+        display: block;
+        position: relative;
+        flex-basis: 1em;
+        top: 14px;
+        left: -8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        height: 1rem;
+        white-space: nowrap;
+    }
+    .compose-btn-cmp {
+        display: block;
+        cursor: pointer;
     }
 }
 
 .myProgress {
-    width: 100%;
-    background-color: grey;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #e9ecef;
+    height: 20px;
+    font: 1rem;
+    position: relative
 }
+
+.myProgress p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .myBar {
     width: 1%;
-    height: 30px;
+    height: 20px;
     background-color: green;
     text-align: center;
+    background-size: 20px 20px;
+    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent)
 }
+
