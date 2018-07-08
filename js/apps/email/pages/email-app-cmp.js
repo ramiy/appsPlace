@@ -5,7 +5,7 @@ import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
 import composeBtn from '../../email/cmps/email-compose-btn-cmp.js'
-import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
 
 
 
@@ -22,21 +22,23 @@ export default {
 
 				<email-menu :class="menuClass" @compose="compose" :percent="readPercentage"></email-menu>
 
-				<email-list v-if="!isCompose" 
+				<email-list v-if="showList"
+					
 					:emails="emailsToShow" 
 					:selectedEmail="selectedEmail"
 					@selectEmail="emailSelected" 
 					@toggle-read="toggleRead">					
 				</email-list>
 				
-				<!--
-				v-if="showList" 
+				
+				<!-- v-if=""  -->
 				<email-details 
-					v-if="showDetails" 
+					v-if="isFullScreen" 
 					:email="selectedEmail" 
-					@email-read="markAsRead">
+					@email-read="markAsRead"
+					:screen-mode="isFullScreen">
 				</email-details>
-				-->
+				
 				
 				<email-compose  v-if="isCompose" ></email-compose>
 				<compose-btn @click.native="compose" v-if="!isCompose"></compose-btn>
@@ -53,6 +55,7 @@ export default {
 			filter: null,
 			isCompose: false,
 			isMenuOpen: false,
+			isFullScreen: false,
 
 		}
 	},
@@ -68,6 +71,7 @@ export default {
 		eventBus.$on(EVENT_EMAIL_SAVED, (newEmail) => this.sendEmail(newEmail));
 		eventBus.$on(EVENT_EMAIL_INBOX, () => this.goToInbox());
 		eventBus.$on(EVENT_EMAIL_TOGGLE_MENU, () => this.isMenuOpen = !this.isMenuOpen);
+		eventBus.$on(EMAIL_FULL_SCREEN, () => this.isFullScreen = !this.isFullScreen);
 
 		if (this.$route.params.emailId) this.checkId(emailId)
 		this.filter = this.$refs.search;
@@ -155,7 +159,7 @@ export default {
 
 		},
 		showList() {
-			return !this.selectedEmail && !this.isCompose;
+			return !this.isFullScreen && !this.isCompose;
 		},
 		showDetails() {
 			return !this.isCompose && this.selectedEmail;

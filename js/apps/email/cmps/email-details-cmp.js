@@ -1,11 +1,12 @@
-import { eventBus, EVENT_EMAIL_DELETED } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EMAIL_DELETED, EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
 
 export default {
-    props: ['email'],
+    props: ['email', 'screenMode'],
 
 	template: `
-		<section class="email-details">
+		<section class="email-details" :class="mainClassObj">
 			<div class="header">
+				<button @click="toggleScreenMode"><i :class="iClassObj"></i></button>
 				<div class="subject">{{email.subject}}</div>
 				<h2>{{email.from.name}} </h2>	<p><{{email.from.email}}></p>
 				<button class="btn-delete" @click="deleteEmail"><i class="fas fa-trash fa-2x"></i></button>
@@ -21,12 +22,27 @@ export default {
     `,
     data() {
         return {
+			mainClassObj: {
+				'email-main-section': this.screenMode,
+	
+			},
+			iClassObj: {
+				'fas' :true, 
+				'fa-expand': !this.screenMode,
+		
+				'fa-compress': this.screenMode
+
+
+			}
+			
 
             
         }
 	},
 	created() {
 		console.log('deatils created');
+		console.log(this.screenMode);
+		
         
 	
 		
@@ -37,12 +53,22 @@ export default {
 		deleteEmail(){
 			eventBus.$emit(EVENT_EMAIL_DELETED, this.email.id)
 			
+		},
+		toggleScreenMode() {
+			eventBus.$emit(EMAIL_FULL_SCREEN)
+			// this.classObj['email-main-section']  =true;
+
 		}
 
 	},
 	components: {
 	},
 	computed: {
+		
+		fullScreen() {
+			
+		}
+		
 
 	
 	},

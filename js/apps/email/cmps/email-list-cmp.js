@@ -9,7 +9,7 @@ export default {
 			<ul>
 				<li v-for="email in emails">
 					<email-preview :key="email.id" @toggle-read="toggleRead" :email="email" @click.native="selectEmail(email.id)"></email-preview>
-					<email-details v-if="checkSelected(email.id)" :email="email"></email-details>
+					<email-details v-if="checkSelected(email.id)" :email="email" :screenMode="false"></email-details>
 				</li>
 			</ul>
 		</section>

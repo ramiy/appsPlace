@@ -12,5 +12,6 @@ export const EVENT_EMAIL_SAVED = 'EVENT_EMAIL_SAVED';
 export const EVENT_EMAIL_DELETED = 'EVENT_EMAIL_DELETED';
 export const EVENT_EMAIL_INBOX = 'EVENT_EMAIL_INBOX';
 export const EVENT_EMAIL_TOGGLE_MENU = 'EVENT_EMAIL_TOGGLE_MENU';
+export const EMAIL_FULL_SCREEN = 'EMAIL_FULL_SCREEN';
 
 export const eventBus = new Vue();
