@@ -19,7 +19,7 @@
 		<header class="flex space-between align-items-center">
 
 			<h1>
-				<img src="img/favicon.png" class="logo">
+				<img src="img/favicon.png" class="logo" alt="Apps Place logo">
 				<router-link to="/">Apps Place</router-link>
 			</h1>
 
@@ -27,7 +27,7 @@
 				<component :is="activeApp + '-filter'"></component>
 			</div>
 
-			<nav>
+			<nav aria-label="Apps list">
 				<ul class="inline-list">
 					<li>
 						<router-link to="/email">Email</router-link>
@@ -41,9 +41,7 @@
 		</header>
 
 		<main>
-
 			<router-view></router-view>
-
 		</main>
 
 	</div>
