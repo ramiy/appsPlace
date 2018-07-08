@@ -5,8 +5,8 @@ export default {
     props: ['email'],
 
     template: `
-		<section class="progress-bar">
-        <div class="first-initial" :style="styleObj">{{initial}}</div>
+		<section class="first-initial" :style="styleObj">
+            {{initial}}
 		</section>
     `,
     created() {
@@ -14,10 +14,18 @@ export default {
     },
     data() {
         return {
+            styleObj: {
+				'background-color': this.email.color,
+			}
           
         }
     },
     computed: {
+        initial() {
+
+			return this.email.from.name.slice(0, 1).toUpperCase()
+		}
+
        
     }
  
