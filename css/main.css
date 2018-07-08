@@ -136,5 +136,52 @@ header .search input {
 /********** MAIN **********/
 
 main {
-	margin: 1em auto;
+}
+
+/********** MAIN **********/
+
+.home > div {
+	width: 100%;
+	padding: 7em 0;
+	border-bottom: 1px solid #aaa;
+	text-align: center;
+}
+
+.home h2 {
+    font-weight: 100;
+	font-size: 2.5em;
+    line-height: 1.5em;
+    padding-bottom: 0.5em;
+}
+
+.home p {
+	display: block;
+	margin: 0 auto;
+    padding-bottom: 1em;
+	font-size: 1.1em;
+	line-height: 1.5em;
+	max-width: 50%;
+}
+
+.home a {
+	color: #d93025;
+	text-decoration: none;
+}
+
+.home .email {
+	background-color: #fff;
+}
+
+.home .notes {
+	background-color: #efefef;
+}
+
+.home .more {
+	background-color: #fff;
+}
+
+@media only screen and (max-width: 540px) {
+	.home p {
+		max-width: 90%;
+	}
 }
