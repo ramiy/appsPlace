@@ -1,7 +1,7 @@
 import notesService from '../services/notes-service.js';
 import {
-	eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED,
-	EVENT_NOTE_STYLED, EVENT_NOTE_EDITING, EVENT_NOTE_UPDATED,
+	eventBus, EVENT_ACTIVE_APP_SET, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED,
+	EVENT_NOTE_MARKED, EVENT_NOTE_STYLED, EVENT_NOTE_EDITING, EVENT_NOTE_UPDATED,
 	EVENT_NOTE_CLONED, EVENT_NOTE_DELETED, EVENT_LIST_NOTE_STATUS_CHANGED
 } from '../../../services/eventbus-service.js'
 
@@ -34,7 +34,10 @@ export default {
 		}
 	},
 	created() {
+		eventBus.$emit(EVENT_ACTIVE_APP_SET, 'notes');
+
 		this.loadNotes();
+
 		eventBus.$on(EVENT_NOTE_ADDED, (note, data) => this.addNote(note, data));
 		eventBus.$on(EVENT_NOTE_PINNED, noteId => this.pinNote(noteId));
 		eventBus.$on(EVENT_NOTE_MARKED, noteId => this.markNote(noteId));
