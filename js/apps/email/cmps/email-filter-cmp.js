@@ -1,94 +1,33 @@
+import { eventBus, EVENT_EMAIL_FILTERED } from '../../../services/eventbus-service.js'
+
 export default {
-	props: ['email'],
-
 	template: `
-		<section class="email-filter">
-                <i class="fas fa-search  fa-lg" @click="setFilter"></i>
-				<input v-model="filter.txt" type="search" placeholder="Search mail" @keyup.13="setFilter">
-				<h3 @click="show=!show">
-					<p>{{emailStatus}}</p> <i class="fas fa-sort-down"></i>
-					<ul class="email-status" v-show="show" >
-						<li>
-							<label>
-							All
-							<input value="all" type="radio" v-model="status">
+		<section class="search email-filter flex justify-content-center">
 
-							</label>
-							
-						</li>
-						<li>
-							<label>
-							Read
-							<input value="read" type="radio" v-model="status">
+			<div>
+				<button class="fas fa-search" @click="updateFilter"></button>
+				<input v-model="filter.txt" type="search" placeholder="Search mail" @input="updateFilter">
+			</div>
 
-							</label>
-							
-						</li>
-						<li>
-							<label >
-							Unread
-							<input  value="unread" type="radio" v-model="status">
-
-							</label>
-							
-						</li>
-
-					</ul>
-				</h3>
-        
+			<select v-model="filter.status" @change="updateFilter">
+				<option value="all">All</option>
+				<option value="read">Read</option>
+				<option value="unread">Unread</option>
+			</select>				
 
 		</section>
-    
     `,
 	data() {
 		return {
 			filter: {
 				txt: '',
-				emailStatus: 'all'
-
+				status: 'all'
 			},
-			status: 'all',
-			show: false
-
 		}
-		
-
-	},
-	created() {
-
-	},
-	components: {
 	},
 	methods: {
-		toggleShow() {
-			console.log('toggle');
-			
-			this.show = !this.show
-		
-		},
-		setFilter() {
-			console.log('sssss');
-
-			this.$emit('set-filter', this.filter)
+		updateFilter() {
+			eventBus.$emit(EVENT_EMAIL_FILTERED, this.filter);
 		}
-
 	},
-	computed: {
-		emailStatus() {
-
-			return this.filter.emailStatus.charAt(0).toUpperCase() + this.filter.emailStatus.slice(1);
-
-		}
-
-
-	},
-	watch: {
-		status() {
-			this.toggleShow()
-			
-			this.filter.emailStatus = this.status;
-			this.$emit('set-filter', this.filter)
-
-		}
-	}
 }
