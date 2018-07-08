@@ -105,48 +105,46 @@ header a {
 	color: #000;
 }
 
-header li {
-	padding: 0 1em;
-}
-
 /********** NAV **********/
 
-nav {
+header nav {
 	cursor: pointer;
 	position: relative;
 }
 
-nav ul.main-nav {
+header nav ul.main-nav {
 	position: absolute;
 	z-index: 5;
-	background: white;
-	top: 120%;
+	top: 1.5em;
 	right: 0;
 	width: 300px;
 	height: 300px;
+	background: white;
 	display: grid;
-	justify-content: space-around;
-	align-items: center;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
+	justify-content: space-around;
+	align-items: center;
 	text-align: center;
 	border-radius: 5px;
 	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.2), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
-nav ul.main-nav i {
+
+header nav ul.main-nav i {
 	display: block;
 	padding-bottom: 0.25em;
 }
 
-nav ul.main-nav li,
-nav ul.main-nav li a {
-	color: #666;
-
+header nav ul.main-nav li {
+	color: #aaa;
 }
 
-nav ul.main-nav li:hover,
-nav ul.main-nav li:hover a {
-		color: #d93025;
+header nav ul.main-nav li a {
+	color: #333;
+}
+
+header nav ul.main-nav li:hover a {
+	color: #d93025;
 }
 
 /********** SEARCH **********/
@@ -171,6 +169,12 @@ header .search input {
 	padding: 10px 30px 10px 50px;
 }
 
+header .search select {
+	padding-right: 10px;
+	padding-left: 10px;
+	border-left: 1px solid rgba(255,255,255, 0.5);
+}
+
 header .search button {
     position: absolute;
     top: 50%;
@@ -187,7 +191,6 @@ header .search button:hover {
     color: black;
     cursor: pointer;
 }
-
 
 @media only screen and (max-width: 540px) {
 
