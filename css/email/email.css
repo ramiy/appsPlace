@@ -233,7 +233,7 @@ pre {
     padding: 20px 10px;
 }
 
-.email-filter h3 {
+.email-filter .filter {
     /* width: 100px; */
     height: 50px;
     display: flex;
@@ -245,7 +245,7 @@ pre {
 	font-size: 1rem;
 }
 
-.email-filter h3 .email-status {
+.email-filter .filter .email-status {
     position: absolute;
     top: 100%;
     right: -0;
@@ -253,7 +253,7 @@ pre {
     width: 150px;
 }
 
-.email-filter h3 .email-status li:not(:last-child) {
+.email-filter .filter .email-status li:not(:last-child) {
     border-bottom: 1px solid black;
 }
 
