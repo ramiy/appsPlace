@@ -5,7 +5,7 @@ import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
 import composeBtn from '../../email/cmps/email-compose-btn-cmp.js'
-import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, EVENT_EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
 
 
 
@@ -71,7 +71,7 @@ export default {
 		eventBus.$on(EVENT_EMAIL_SAVED, (newEmail) => this.sendEmail(newEmail));
 		eventBus.$on(EVENT_EMAIL_INBOX, () => this.goToInbox());
 		eventBus.$on(EVENT_EMAIL_TOGGLE_MENU, () => this.isMenuOpen = !this.isMenuOpen);
-		eventBus.$on(EMAIL_FULL_SCREEN, () => this.isFullScreen = !this.isFullScreen);
+		eventBus.$on(EVENT_EMAIL_FULL_SCREEN, () => this.isFullScreen = !this.isFullScreen);
 
 		if (this.$route.params.emailId) this.checkId(emailId)
 		this.filter = this.$refs.search;

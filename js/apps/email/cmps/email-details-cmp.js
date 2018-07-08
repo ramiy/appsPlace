@@ -1,4 +1,4 @@
-import { eventBus, EVENT_EMAIL_DELETED, EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
 
 export default {
     props: ['email', 'screenMode'],
@@ -55,7 +55,7 @@ export default {
 	mounted() {
 	},
 	methods: {
-		deleteEmail(){
+		deleteEmail(){EVENT_EMAIL_FULL_SCREEN
 			eventBus.$emit(EVENT_EMAIL_DELETED, this.email.id)
 			
 		},
