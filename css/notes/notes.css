@@ -99,7 +99,8 @@
 .note-item-actions i.colors .dropdown-content {
 	position: absolute;
 	right: 0;
-    top: 2em;
+	top: 2em;
+	padding-top: 7px;
 }
 
 .note-item-actions i.colors span {

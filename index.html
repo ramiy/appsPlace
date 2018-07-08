@@ -19,7 +19,7 @@
 		<header class="flex space-between align-items-center">
 
 			<h1>
-				<img src="img/favicon.png" class="logo">
+				<img src="img/favicon.png" class="logo" alt="Apps Place logo">
 				<router-link to="/">Apps Place</router-link>
 			</h1>
 
@@ -27,38 +27,39 @@
 				<component :is="activeApp + '-filter'"></component>
 			</div>
 
-			<nav @click="toggleMenu">
+			<nav @click="toggleMenu" aria-label="Apps list">
 				<i class="fas fa-th fa-lg"></i>
 				<ul class="inline-list main-nav" v-show="menuDisplay">
 					<li>
 						<router-link to="/email">
-							<i class="fas fa-envelope fa-2x"></i>
-							Email</router-link>
+							<i class="fas fa-envelope fa-2x"></i> Email
+						</router-link>
 					</li>
 					<li>
 						<router-link to="/notes">
-							<i class="fas fa-map-pin fa-2x"></i>Notes</router-link>
+							<i class="fas fa-map-pin fa-2x"></i> Notes
+						</router-link>
 					</li>
 					<li>
-						<i class="fas fa-map-marker-alt fa-2x"></i>Maps
+						<i class="fas fa-map-marker-alt fa-2x"></i> Maps
 					</li>
 					<li>
-						<i class="fas fa-calendar-alt fa-2x"></i>Calander
+						<i class="fas fa-calendar-alt fa-2x"></i> Calander
 					</li>
 					<li>
-						<i class="fab fa-youtube fa-2x"></i>Youtube
+						<i class="fab fa-youtube fa-2x"></i> Youtube
 					</li>
 					<li>
-						<i class="fas fa-user-tie fa-2x"></i>Contacts
+						<i class="fas fa-user-tie fa-2x"></i> Contacts
 					</li>
 					<li>
-						<i class="fas fa-camera fa-2x"></i>Photos
+						<i class="fas fa-camera fa-2x"></i> Photos
 					</li>
 					<li>
-						<i class="fas fa-globe-americas fa-2x"></i>Earth
+						<i class="fas fa-globe-americas fa-2x"></i> Earth
 					</li>
 					<li>
-						<i class="far fa-newspaper fa-2x"></i>News
+						<i class="far fa-newspaper fa-2x"></i> News
 					</li>
 				</ul>
 			</nav>
@@ -66,9 +67,7 @@
 		</header>
 
 		<main>
-
 			<router-view></router-view>
-
 		</main>
 
 	</div>
