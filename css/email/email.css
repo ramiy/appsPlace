@@ -502,6 +502,9 @@ pre {
 		justify-content: center;
 		align-items: center;
 	}
+	.email-preview .action {
+		padding-right: 0;
+	}
 }
 
 .myProgress {
