@@ -5,7 +5,7 @@ import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
 import composeBtn from '../../email/cmps/email-compose-btn-cmp.js'
-import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, EVENT_EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_ACTIVE_APP_SET, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, EVENT_EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
 
 
 
@@ -60,6 +60,8 @@ export default {
 		}
 	},
 	created() {
+		eventBus.$emit(EVENT_ACTIVE_APP_SET, 'email');
+
 		let emailId = this.$route.params.emailId;
 		if (emailId) this.checkId(emailId)
 		emailService.query()
@@ -149,7 +151,7 @@ export default {
 				let searchTerm = this.filter.txt.toLowerCase()
 				emailsToShow = emailsToShow.filter(email => {
 					return (email.subject.toLowerCase().includes(searchTerm) ||
-							email.body.toLowerCase().includes(searchTerm))
+						email.body.toLowerCase().includes(searchTerm))
 				})
 
 			}

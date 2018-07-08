@@ -1,3 +1,5 @@
+import { eventBus, EVENT_ACTIVE_APP_SET } from '../services/eventbus-service.js'
+
 export default {
 	template: `
 		<section class="home">
@@ -22,4 +24,7 @@ export default {
 
 		</section>
 	`,
+	created() {
+		eventBus.$emit(EVENT_ACTIVE_APP_SET, '');
+	}
 }
