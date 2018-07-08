@@ -32,7 +32,7 @@ var emails = [
 		Good`,
 		isRead: false,
 		sentAt: 153079231839,
-		from: { name: 'Itai', email: 'itai@gmail.com' },
+		from: { name: 'Itai ben yair ben donald trump', email: 'itai@gmail.com' },
 		to: { name: 'rami', email: 'rami@gmail.com' },
 		id: 'EfrK0'
 
@@ -42,8 +42,8 @@ var emails = [
 		body: `'Hi! this would be ou email'`,
 		isRead: false,
 		sentAt: 153079231839,
-		from: { name: 'Itai', email: 'itai@gmail.com' },
-		to: { name: 'rami', email: 'rami@gmail.com' },
+		to: { name: 'Itai', email: 'itai@gmail.com' },
+		from: { name: 'rami', email: 'rami@gmail.com' },
 		id: 'EsdrK0'
 
 	},
@@ -101,6 +101,7 @@ var emails = [
 
 
 ];
+
 (function () {
 	var temp = utilService.loadFromStorage(STORAGE_KEY);
 	if (temp) {

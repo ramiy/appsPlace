@@ -6,12 +6,14 @@ export default {
 	template: `
 		<section class="email-preview" :class="[isRead? 'read' : '']">
 			<span class="from">{{email.from.name}}</span>  
+
 			<span class="content">
-				{{email.subject}} - 
+				{{email.subject}} 
 				<span class="body">
 					{{body}}
 				</span>
 			</span>
+			
 			<span class="sent-at">
 				{{sentAt}}
 			</span>
@@ -44,9 +46,9 @@ export default {
 		body() {
 			if (this.email.body.length > 400) {
 
-				return this.email.body.substr(0, 400)
+				return ' - ' + this.email.body.substr(0, 400)
 			}
-			else return this.email.body
+			else return ' - ' + this.email.body
 		},
 		sentAt() {
 			let currDate = moment(Date.now())
