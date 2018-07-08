@@ -1,3 +1,5 @@
+import { eventBus, EVENT_EMAIL_DELETED } from '../../../services/eventbus-service.js'
+
 export default {
 	props: ['email'],
 
@@ -25,15 +27,10 @@ export default {
 
 		}
 	},
-	created() {
-		console.log('email preview ', this.body);
 
-	},
-	components: {
-	},
 	methods: {
 		deleteEmail(id) {
-			this.$emit('delete-email', id)
+			eventBus.$emit(EVENT_EMAIL_DELETED, id)
 		},
 		toggleRead(id, isRead) {
 			this.$emit('toggle-read', id, isRead)
