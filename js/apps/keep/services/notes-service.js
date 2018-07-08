@@ -157,7 +157,7 @@ var notes = [
 		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
-			pinned: true,
+			pinned: false,
 			marked: false,
 			editMode: false,
 		},

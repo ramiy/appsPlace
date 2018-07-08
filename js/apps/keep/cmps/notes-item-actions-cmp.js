@@ -17,7 +17,8 @@ export default {
 				<div class="dropdown-content">
 					<template v-for="color in availableColors">
 						<span :style="{'background-color': color.value}"
-						:class="getBgColorClass(color.value)" @click="styleNote(color.value)"> &nbsp; </span>
+							:class="getBgColorClass(color.value)"
+							@click="styleNote(color.value)"> &nbsp; </span>
 					</template>
 				</div>
 			</i>
