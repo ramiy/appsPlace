@@ -32,7 +32,6 @@ export default {
 		
 	},
 	mounted() {
-		this.$emit('email-read', this.email.id)
 	},
 	methods: {
 		deleteEmail(){

@@ -4,41 +4,44 @@ import emailDetails from '../../email/cmps/email-details-cmp.js'
 import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
-import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU  } from '../../../services/eventbus-service.js'
+import { eventBus, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU } from '../../../services/eventbus-service.js'
 
 
 
 export default {
 	template: `
 		<section class="email-app">
+
 			<div class="header">
-				<div @click="isMenuOpen=true" class="toggle-menu"><i class="fas fa-bars fa-3x"></i></div>
-				<email-filter></email-filter>
+				<div @click="isMenuOpen=true" class="toggle-menu"><i class="fas fa-bars fa-lg"></i></div>
+				<email-filter @set-filter="setFilter"></email-filter>
 			</div>
 
 			<div class="wrapper flex">
 
-				<email-menu :class="menuClass" @compose="compose"></email-menu>
+				<email-menu :class="menuClass" @compose="compose" :percent="readPercentage"></email-menu>
 
-				<email-list :emails="emailsToShow" 
-					@emailselceted="emailSelected" 
-					v-if="showList"  
+				<email-list v-if="!isCompose" 
+					:emails="emailsToShow" 
+					:selectedEmail="selectedEmail"
+					@selectEmail="emailSelected" 
 					@toggle-read="toggleRead">					
 				</email-list>
-
+				
+				<!--
+				v-if="showList" 
 				<email-details 
-					:email="selectedEmail" 
 					v-if="showDetails" 
+					:email="selectedEmail" 
 					@email-read="markAsRead">
 				</email-details>
+				-->
+				
 				<email-compose v-if="isCompose" ></email-compose>
 
 			</div>
         
         </section>
-    
-    
-    
     `,
 
 	data() {
@@ -47,7 +50,8 @@ export default {
 			selectedEmail: null,
 			filter: null,
 			isCompose: false,
-			isMenuOpen: false
+			isMenuOpen: false,
+
 		}
 	},
 	created() {
@@ -63,23 +67,27 @@ export default {
 		eventBus.$on(EVENT_EMAIL_INBOX, () => this.goToInbox());
 		eventBus.$on(EVENT_EMAIL_TOGGLE_MENU, () => this.isMenuOpen = !this.isMenuOpen);
 
+		if (this.$route.params.emailId) this.checkId(emailId)
+		this.filter = this.$refs.search;
 
 	},
 	methods: {
 		emailSelected(emailId) {
-			this.$router.push(`/email/${emailId}`)
+			if (this.selectedEmail && this.selectedEmail.id && this.selectedEmail.id === emailId) {
+				this.goToInbox()
+			} else {
+				this.$router.push(`/email/${emailId}`);
+				this.checkId(emailId);
+				this.markAsRead(emailId)
 
-
+			}
 		},
 		markAsRead(id) {
 			emailService.toggleRead(id, true)
 		},
 		toggleRead(id, isRead) {
 			console.log('pipi');
-
 			emailService.toggleRead(id, isRead)
-
-
 		},
 		deleteEmail(id) {
 			emailService.deleteEmail(id)
@@ -100,36 +108,68 @@ export default {
 				})
 		},
 		compose() {
+			this.selectedEmail = null
 			this.isCompose = true;
 			this.isMenuOpen = false;
-
 		},
 		sendEmail(newEmail) {
-			emailService.addEmail(newEmail)	
-				.then(() =>
-			{this.isCompose = false})		
+			emailService.addEmail(newEmail)
+				.then(() => { this.isCompose = false })
 		},
 		goToInbox() {
-			this.isCompose=false;
+			this.isCompose = false;
 			this.selectedEmail = null;
 			this.filter = null;
 			this.isMenuOpen = false;
+		},
+		setFilter(filter) {
+
+			this.filter = filter;
+
 		}
 	},
 	computed: {
 		emailsToShow() {
-			return this.emails;
+			if (!this.filter) return this.emails;
+
+			let emailsToShow = this.emails
+
+			if (this.filter.emailStatus !== 'all') {
+				let isRead = (this.filter.emailStatus === 'read') ? true : false;
+				emailsToShow = emailsToShow.filter(email => email.isRead === isRead)
+			}
+
+			if (this.filter.txt) {
+				let searchTerm = this.filter.txt.toLowerCase()
+				emailsToShow = emailsToShow.filter(email => {
+					return (email.subject.toLowerCase().includes(searchTerm) ||
+							email.body.toLowerCase().includes(searchTerm))
+				})
+
+			}
+
+			return emailsToShow
+
+
 		},
 		showList() {
 			return !this.selectedEmail && !this.isCompose;
 		},
 		showDetails() {
-			return  !this.isCompose && this.selectedEmail;
+			return !this.isCompose && this.selectedEmail;
 		},
 		menuClass() {
 			return {
 				open: this.isMenuOpen
 			}
+		},
+		readPercentage() {
+			let readCount = 0;
+			for (let i = 0; i < this.emails.length; i++) {
+				if (this.emails[i].isRead) readCount++
+			}
+
+			return Math.floor(readCount / this.emails.length * 100);
 		}
 	},
 	watch: {
@@ -140,8 +180,6 @@ export default {
 				this.checkId(emailId)
 			} else {
 				this.selectedEmail = null;
-
-
 			}
 		},
 		selectedEmail: function (email) {
@@ -149,7 +187,6 @@ export default {
 				this.$router.push(`/email`);
 			}
 		}
-
 	},
 	components: {
 		emailList,
@@ -157,8 +194,6 @@ export default {
 		emailFilter,
 		emailMenu,
 		emailCompose
-
-
 	}
 
 }

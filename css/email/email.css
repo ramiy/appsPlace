@@ -117,6 +117,7 @@
 
 .email-details {
     background-color: white;
+    padding: 0px 20px 40px 20px;
     /* flex: 0 0 75%;
     max-width: 75%; */
 }
@@ -177,6 +178,7 @@ pre {
     margin: 0 auto;
     width: 720px;
     position: relative;
+    display: flex;
 }
 
 .email-filter input {
@@ -206,12 +208,48 @@ pre {
     color: black;
     cursor: pointer;
 }
+.email-filter input[type=radio] {
+    position: absolute;
+top: -9999px;
+left: -9999px;
+
+    
+}
+.email-filter .email-status label {
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    padding: 10px;
+}
+.email-filter h3 {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+
+}
+.email-filter h3 .email-status {
+    position: absolute;
+    top: 100%;
+    right: -0;
+    background: yellow;
+    width: 100px;
+
+}
+.email-filter h3 .email-status li {
+
+}
 
 .email-app .wrapper {
     width: 100%;
     align-items: flex-start;
     justify-content: space-between;
 }
+/* EMAIL-MENU-CMP */
+
 
 .email-menu {
     flex: 0 0 25%;
@@ -254,7 +292,6 @@ pre {
     width: 100%;
 }
 
-/* EMAIL-MENU-CMP */
 
 .email-menu>ul li i {
     margin-right: 10px;
@@ -430,6 +467,10 @@ pre {
         height: 50px;
         text-align: center;
         align-items: center;
+        justify-content: center;
+        color: #767676;
+
+
     
     }
     .email-app>.header {
@@ -440,9 +481,10 @@ pre {
     .email-filter {
         width: 85%;
         margin: 0;
+        align-items: center
     }
+
     .email-menu .close-menu {
-        display: block;
         position: absolute;
         right: -20px;
         width: 50px;
@@ -455,5 +497,21 @@ pre {
         transform: translate(100%, 0);
         background: white;
         cursor: pointer;
+        color: #767676;
+
     }
+    .email-app {
+        padding:  0;
+    }
+}
+
+.myProgress {
+    width: 100%;
+    background-color: grey;
+}
+.myBar {
+    width: 1%;
+    height: 30px;
+    background-color: green;
+    text-align: center;
 }

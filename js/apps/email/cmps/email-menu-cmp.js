@@ -1,9 +1,10 @@
 import {  EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, eventBus } from '../../../services/eventbus-service.js'
+import progressBar from './progress-bar-cmp.js'
 
 
 
 export default {
-	props: ['email'],
+	props: ['email', 'percent'],
 
 	template: `
 		<section class="email-menu">
@@ -16,6 +17,7 @@ export default {
                    <li><i class="fab fa-firstdraft"></i>Drafts</li>
 			   </ul>
 			   <div class="close-menu" @click="closeMenu"><i class="fas fa-times fa-2x"></i></div>
+			   <progress-bar :percent="percent"></progress-bar>
 
 		</section>
     
@@ -44,5 +46,8 @@ export default {
 
 
 
+	},
+	components: {
+		progressBar
 	}
 }

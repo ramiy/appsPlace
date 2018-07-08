@@ -17,8 +17,9 @@ export default {
 			</span>
 			<ul class="action">
 				<li @click.stop="deleteEmail(email.id)" title="Delete Email"><i class="fas fa-trash fa-lg"></i></li>
-				<li@click.stop="toggleRead(email.id, !isRead)"><i :class="isRead? 'fa-envelope' :  'fa-envelope-open'" class="fas fa-lg" :title="title"></i></li>
+				<li @click.stop="toggleRead(email.id, !isRead)"><i :class="isRead? 'fa-envelope' :  'fa-envelope-open'" class="fas fa-lg" :title="title"></i></li>
 			</ul>
+		
 		</section>
     
     `,
@@ -34,7 +35,6 @@ export default {
 		},
 		toggleRead(id, isRead) {
 			this.$emit('toggle-read', id, isRead)
-
 		}
 	},
 	computed: {
@@ -59,8 +59,6 @@ export default {
 			} else {
 				return moment(emailDate).format('l')
 			}
-
-
 		},
 		title() {
 			if( this.isRead ) return 'Mark as unread'
