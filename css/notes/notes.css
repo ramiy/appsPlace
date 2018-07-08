@@ -31,6 +31,7 @@
 
 .notes-edit {
 	padding-top: 1em;
+	text-align: center;
 }
 
 .notes-edit input {
@@ -45,9 +46,11 @@
 }
 
 .notes-edit button {
-	background-color: rgba(0,0,0,0.25);
+ 	padding: 0.5em 1em;
+    margin: 10px auto 0;
 	border: transparent;
-	padding: 0.5em 1em;
+	background-color: rgba(0,0,0,0.25);
+	cursor: pointer;
 }
 
 /********** NOTE ACTIONS **********/
