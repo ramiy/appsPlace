@@ -312,13 +312,17 @@ function saveNote(note, data) {
 		// 	return Promise.reject();
 	}
 
+	// Save data
 	if (note.id) {
+		// Update existing note
 		let noteIdx = notes.findIndex(currNote => currNote.id === note.id);
 		notes.splice(noteIdx, 1, note);
 	} else {
+		// Add new note
 		note.id = utilsService.makeId();
 		notes.unshift(note);
 	}
+
 	return Promise.resolve(note);
 }
 

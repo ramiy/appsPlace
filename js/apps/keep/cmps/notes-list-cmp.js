@@ -10,14 +10,14 @@ export default {
 		<section class="notes-list" v-if="noteCmps">
 
 			<h3 v-if="pinnedNotesToShow.length > 0"> Pinned Notes </h3>
-			<div v-if="pinnedNotesToShow.length > 0" class="masonry">
+			<div v-if="pinnedNotesToShow.length > 0" :class="display">
 				<component v-for="(cmp, idx) in pinnedNotesToShow" :is="'note-type-'+cmp.settings.noteType"
 					:key="idx" :note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
 				</component>
 			</div>
 
 			<h3 v-if="pinnedNotesToShow.length > 0"> Other Notes </h3>
-			<div v-if="notesToShow" class="masonry">
+			<div v-if="notesToShow" :class="display">
 				<component v-for="(cmp, idx) in notesToShow" :is="'note-type-'+cmp.settings.noteType"
 					:key="idx" :note="cmp" :noteTypesInfo="noteTypes[cmp.settings.noteType]">
 				</component>
@@ -25,6 +25,11 @@ export default {
 
 		</section>
 	`,
+	data() {
+		return {
+			display: 'masonry', //TODO: allow the user to change the layout
+		}
+	},
 	components: {
 		noteTypeText,
 		noteTypeImage,

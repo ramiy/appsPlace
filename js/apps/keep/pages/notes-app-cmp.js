@@ -1,7 +1,7 @@
 import notesService from '../services/notes-service.js';
 import {
-	eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED,
-	EVENT_NOTE_MARKED, EVENT_NOTE_STYLED, EVENT_NOTE_EDITING,
+	eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED, 
+	EVENT_NOTE_STYLED, EVENT_NOTE_EDITING, EVENT_NOTE_UPDATED, 
 	EVENT_NOTE_CLONED, EVENT_NOTE_DELETED, EVENT_LIST_NOTE_STATUS_CHANGED
 } from '../../../services/eventbus-service.js'
 
@@ -38,6 +38,7 @@ export default {
 		eventBus.$on(EVENT_NOTE_MARKED, noteId => this.markNote(noteId));
 		eventBus.$on(EVENT_NOTE_STYLED, (noteId, bgColor) => this.styleNote(noteId, bgColor));
 		eventBus.$on(EVENT_NOTE_EDITING, noteId => this.editNote(noteId));
+		eventBus.$on(EVENT_NOTE_UPDATED, (note, data) => this.addNote(note, data));
 		eventBus.$on(EVENT_NOTE_CLONED, noteId => this.cloneNote(noteId));
 		eventBus.$on(EVENT_NOTE_DELETED, noteId => this.removeNote(noteId));
 		eventBus.$on(EVENT_LIST_NOTE_STATUS_CHANGED, (noteId, listIdx) => this.updateListNoteStatus(noteId, listIdx));
