@@ -24,7 +24,7 @@
 			</h1>
 
 			<div class="search">
-				<input type="search" :placeholder="'Search ' + activeApp + '...'" ref="search" />
+				<component v-if="activeApp" :is="activeApp + '-filter'"></component>
 			</div>
 
 			<nav>
