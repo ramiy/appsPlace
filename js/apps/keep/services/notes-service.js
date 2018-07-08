@@ -1,5 +1,7 @@
 import utilsService from '../../../services/utils-service.js';
 
+const STORAGE_KEY = 'notesApp';
+
 var notes = [
 	{
 		id: utilsService.makeId(),
@@ -155,7 +157,7 @@ var notes = [
 		id: utilsService.makeId(),
 		settings: {
 			noteType: 'text',
-			pinned: true,
+			pinned: false,
 			marked: false,
 			editMode: false,
 		},
@@ -248,6 +250,16 @@ var notes = [
 	},
 ];
 
+(function () {
+	var temp = utilsService.loadFromStorage(STORAGE_KEY);
+	if (temp) notes = temp;
+	else saveNotesToStorage();
+})();
+
+function saveNotesToStorage() {
+	utilsService.saveToStorage(STORAGE_KEY, notes);
+}
+
 function emptyNote() {
 	return {
 		settings: {
@@ -276,6 +288,7 @@ function removeNote(id) {
 	return new Promise((resolve, reject) => {
 		let noteIdx = notes.findIndex(note => note.id === id);
 		notes.splice(noteIdx, 1);
+		saveNotesToStorage();
 		resolve();
 	});
 }
@@ -287,6 +300,7 @@ function cloneNote(id) {
 			let newNote = JSON.parse(JSON.stringify(note));
 			newNote.id = utilsService.makeId();
 			notes.splice(oldNoteIdx, 0, newNote)
+			saveNotesToStorage();
 		});
 }
 
@@ -323,32 +337,48 @@ function saveNote(note, data) {
 		notes.unshift(note);
 	}
 
+	saveNotesToStorage();
 	return Promise.resolve(note);
 }
 
 function pinNote(id) {
 	return getNoteById(id)
-		.then(note => note.settings.pinned = !note.settings.pinned);
+		.then(note => {
+			note.settings.pinned = !note.settings.pinned;
+			saveNotesToStorage();
+		});
 }
 
 function markNote(id) {
 	return getNoteById(id)
-		.then(note => note.settings.marked = !note.settings.marked);
+		.then(note => {
+			note.settings.marked = !note.settings.marked;
+			saveNotesToStorage();
+		});
 }
 
 function styleNote(id, bgColor) {
 	return getNoteById(id)
-		.then(note => note.styles.backgroundColor = bgColor);
+		.then(note => {
+			note.styles.backgroundColor = bgColor;
+			saveNotesToStorage();
+		});
 }
 
 function editNote(id) {
 	return getNoteById(id)
-		.then(note => note.settings.editMode = !note.settings.editMode);
+		.then(note => {
+			note.settings.editMode = !note.settings.editMode;
+			saveNotesToStorage();
+		});
 }
 
 function updateListNoteStatus(id, listIdx) {
 	return getNoteById(id)
-		.then(note => note.data.list[listIdx].completed = !note.data.list[listIdx].completed);
+		.then(note => {
+			note.data.list[listIdx].completed = !note.data.list[listIdx].completed;
+			saveNotesToStorage();
+		});
 }
 
 export default {

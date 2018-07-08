@@ -8,7 +8,7 @@ export default {
 			:class="{marked: note.settings.marked}"
 			:style="{'background-color': note.styles.backgroundColor }">
 
-			<p contenteditable="true" @input="updateNote">{{note.data.text}}</p>
+			<p>{{note.data.text}}</p>
 
 			<note-item-actions :note="note" :noteTypesInfo="noteTypesInfo"></note-item-actions>
 
@@ -20,9 +20,4 @@ export default {
 		noteItemActions,
 		noteEdit,
 	},
-	methods: {
-		updateNote(ev) {
-			// eventBus.$emit('update', ev.target.innerText);
-		}
-	}
 }
