@@ -166,7 +166,7 @@ header .search select {
 header .search input {
 	width: 100%;
 	min-width: 0;
-	padding: 10px 30px 10px 50px;
+	padding: 10px 10px 10px 50px;
 }
 
 header .search select {
@@ -180,7 +180,7 @@ header .search button {
     top: 50%;
     color: #818181;
     transform: translate(0, -50%);
-    padding: 20px 0 20px 15px;
+    padding: 8px 15px;
     border: 0;
     background: transparent;
     line-height: 1.25em;
@@ -192,7 +192,7 @@ header .search button:hover {
     cursor: pointer;
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 640px) {
 
 	header {
 		flex-flow: row wrap;
@@ -252,7 +252,7 @@ header .search button:hover {
 	background-color: #fff;
 }
 
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 768px) {
 	.home p {
 		max-width: 90%;
 	}
