@@ -55,12 +55,12 @@ export default {
 	mounted() {
 	},
 	methods: {
-		deleteEmail(){EVENT_EMAIL_FULL_SCREEN
+		deleteEmail(){
 			eventBus.$emit(EVENT_EMAIL_DELETED, this.email.id)
 			
 		},
 		toggleScreenMode() {
-			eventBus.$emit(EMAIL_FULL_SCREEN)
+			eventBus.$emit(EVENT_EMAIL_FULL_SCREEN)
 			// this.classObj['email-main-section']  =true;
 
 		}
