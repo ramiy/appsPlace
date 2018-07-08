@@ -1,13 +1,10 @@
 import emailService from '../services/email-service.js'
 import emailList from '../../email/cmps/email-list-cmp.js'
 import emailDetails from '../../email/cmps/email-details-cmp.js'
-import emailFilter from '../../email/cmps/email-filter-cmp.js'
 import emailMenu from '../../email/cmps/email-menu-cmp.js'
 import emailCompose from '../../email/cmps/email-compose-cmp.js'
 import composeBtn from '../../email/cmps/email-compose-btn-cmp.js'
-import { eventBus, EVENT_ACTIVE_APP_SET, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, EVENT_EMAIL_FULL_SCREEN } from '../../../services/eventbus-service.js'
-
-
+import { eventBus, EVENT_ACTIVE_APP_SET, EVENT_EMAIL_DELETED, EVENT_EMAIL_SAVED, EVENT_EMAIL_INBOX, EVENT_EMAIL_TOGGLE_MENU, EVENT_EMAIL_FULL_SCREEN, EVENT_EMAIL_FILTERED } from '../../../services/eventbus-service.js'
 
 export default {
 	template: `
@@ -15,7 +12,6 @@ export default {
 
 			<div class="header">
 				<div @click="isMenuOpen=true" class="toggle-menu"><i class="fas fa-bars fa-lg"></i></div>
-				<email-filter @set-filter="setFilter"></email-filter>
 			</div>
 
 			<div class="wrapper flex">
@@ -23,22 +19,18 @@ export default {
 				<email-menu :class="menuClass" @compose="compose" :percent="readPercentage"></email-menu>
 
 				<email-list v-if="showList"
-					
 					:emails="emailsToShow" 
 					:selectedEmail="selectedEmail"
 					@selectEmail="emailSelected" 
 					@toggle-read="toggleRead">					
 				</email-list>
 				
-				
-				<!-- v-if=""  -->
 				<email-details 
 					v-if="isFullScreen" 
 					:email="selectedEmail" 
 					@email-read="markAsRead"
 					:screen-mode="isFullScreen">
 				</email-details>
-				
 				
 				<email-compose  v-if="isCompose" ></email-compose>
 				<compose-btn @click.native="compose" v-if="!isCompose"></compose-btn>
@@ -74,10 +66,10 @@ export default {
 		eventBus.$on(EVENT_EMAIL_INBOX, () => this.goToInbox());
 		eventBus.$on(EVENT_EMAIL_TOGGLE_MENU, () => this.isMenuOpen = !this.isMenuOpen);
 		eventBus.$on(EVENT_EMAIL_FULL_SCREEN, () => this.isFullScreen = !this.isFullScreen);
+		eventBus.$on(EVENT_EMAIL_FILTERED, filter => this.setFilter(filter));
 
 		if (this.$route.params.emailId) this.checkId(emailId)
 		this.filter = this.$refs.search;
-
 	},
 	methods: {
 		emailSelected(emailId) {
@@ -131,9 +123,7 @@ export default {
 			this.isMenuOpen = false;
 		},
 		setFilter(filter) {
-
 			this.filter = filter;
-
 		}
 	},
 	computed: {
@@ -142,23 +132,22 @@ export default {
 
 			let emailsToShow = this.emails
 
-			if (this.filter.emailStatus !== 'all') {
-				let isRead = (this.filter.emailStatus === 'read') ? true : false;
+			if (this.filter.status !== 'all') {
+				let isRead = (this.filter.status === 'read') ? true : false;
 				emailsToShow = emailsToShow.filter(email => email.isRead === isRead)
 			}
 
 			if (this.filter.txt) {
 				let searchTerm = this.filter.txt.toLowerCase()
 				emailsToShow = emailsToShow.filter(email => {
-					return (email.subject.toLowerCase().includes(searchTerm) ||
-						email.body.toLowerCase().includes(searchTerm))
+					return (
+						email.subject.toLowerCase().includes(searchTerm) ||
+						email.body.toLowerCase().includes(searchTerm)
+					)
 				})
-
 			}
 
 			return emailsToShow
-
-
 		},
 		showList() {
 			return !this.isFullScreen && !this.isCompose;
@@ -199,7 +188,6 @@ export default {
 	components: {
 		emailList,
 		emailDetails,
-		emailFilter,
 		emailMenu,
 		emailCompose,
 		composeBtn

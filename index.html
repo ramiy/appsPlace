@@ -23,8 +23,8 @@
 				<router-link to="/">Apps Place</router-link>
 			</h1>
 
-			<div class="search">
-				<component v-if="activeApp" :is="activeApp + '-filter'"></component>
+			<div class="search" v-if="activeApp">
+				<component :is="activeApp + '-filter'"></component>
 			</div>
 
 			<nav>

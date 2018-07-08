@@ -185,77 +185,6 @@ pre {
 
 /* email-filter-cmp */
 
-.email-filter {
-    margin: 0 auto;
-    width: 720px;
-    position: relative;
-    display: flex;
-}
-
-.email-filter input {
-    min-width: 0;
-    width: 100%;
-    background-color: #f4f6f7;
-    border: 0;
-    padding: 11px 30px 11px 50px;
-    font-size: 1.5rem;
-}
-
-.email-filter input:focus {
-    background: white;
-    outline: 3px solid#f4f6f7;
-}
-
-.email-filter i.fa-search {
-    position: absolute;
-    top: 50%;
-    ;
-    color: #818181;
-    transform: translate(0, -50%);
-    padding: 20px 0 20px 15px;
-}
-
-.email-filter i:hover {
-    color: black;
-    cursor: pointer;
-}
-
-.email-filter input[type=radio] {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-}
-
-.email-filter .email-status label {
-    width: 100%;
-    display: block;
-    cursor: pointer;
-    padding: 20px 10px;
-}
-
-.email-filter .filter {
-    /* width: 100px; */
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    position: relative;
-	padding: 10px;
-	font-size: 1rem;
-}
-
-.email-filter .filter .email-status {
-    position: absolute;
-    top: 100%;
-    right: -0;
-    background: #fb0;
-    width: 150px;
-}
-
-.email-filter .filter .email-status li:not(:last-child) {
-    border-bottom: 1px solid black;
-}
 
 .email-app .wrapper {
     width: 100%;
@@ -498,11 +427,6 @@ pre {
         display: flex;
         align-items: center;
         justify-content: space-between;
-    }
-    .email-filter {
-        width: 85%;
-        margin: 0;
-        align-items: center
     }
     .email-menu .close-menu {
         position: absolute;

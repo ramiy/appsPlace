@@ -27,17 +27,6 @@
 	font-weight: bold;
 }
 
-/********** NOTES FILTER **********/
-
-.note-filter i {
-	color: #999;
-	cursor: pointer;
-}
-
-.note-filter i.selected {
-	color: #000;
-}
-
 /********** NOTE EDIT **********/
 
 .notes-edit {

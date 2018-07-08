@@ -2,11 +2,10 @@ import notesService from '../services/notes-service.js';
 import {
 	eventBus, EVENT_ACTIVE_APP_SET, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED,
 	EVENT_NOTE_MARKED, EVENT_NOTE_STYLED, EVENT_NOTE_EDITING, EVENT_NOTE_UPDATED,
-	EVENT_NOTE_CLONED, EVENT_NOTE_DELETED, EVENT_LIST_NOTE_STATUS_CHANGED
+	EVENT_NOTE_CLONED, EVENT_NOTE_DELETED, EVENT_LIST_NOTE_STATUS_CHANGED, EVENT_NOTE_FILTERED
 } from '../../../services/eventbus-service.js'
 
 import notesAdd from '../cmps/notes-add-cmp.js';
-import notesFilter from '../cmps/notes-filter-cmp.js';
 import notesList from '../cmps/notes-list-cmp.js';
 
 export default {
@@ -14,12 +13,11 @@ export default {
 		<section class="notes-app">
 
 			<notes-add :noteTypes="noteTypes"></notes-add>
-			<notes-filter :noteTypes="noteTypes" @filtered="updateFilter"></notes-filter>
 			<notes-list :noteCmps="notesToShow" :noteTypes="noteTypes"></notes-list>
 
 		</section>
 	`,
-	components: { notesAdd, notesFilter, notesList },
+	components: { notesAdd, notesList },
 	data() {
 		return {
 			noteTypes: {
@@ -30,7 +28,7 @@ export default {
 				list: { field: 'text', icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
 			},
 			noteCmps: null,
-			filterBy: '',
+			filterBy: null,
 		}
 	},
 	created() {
@@ -47,6 +45,7 @@ export default {
 		eventBus.$on(EVENT_NOTE_CLONED, noteId => this.cloneNote(noteId));
 		eventBus.$on(EVENT_NOTE_DELETED, noteId => this.removeNote(noteId));
 		eventBus.$on(EVENT_LIST_NOTE_STATUS_CHANGED, (noteId, listIdx) => this.updateListNoteStatus(noteId, listIdx));
+		eventBus.$on(EVENT_NOTE_FILTERED, filter => this.updateFilter(filter));
 	},
 	methods: {
 		loadNotes() {
@@ -84,9 +83,32 @@ export default {
 	computed: {
 		notesToShow() {
 			let notesToShow = this.noteCmps;
-			if (this.filterBy) {
-				notesToShow = notesToShow.filter(note => this.filterBy.includes(note.settings.noteType));
+
+			if (this.filterBy && this.filterBy.type !== '') {
+				notesToShow = notesToShow.filter(note => this.filterBy.type === note.settings.noteType)
 			}
+
+			if (this.filterBy && this.filterBy.txt) {
+				let searchTerm = this.filterBy.txt.toLowerCase()
+				notesToShow = notesToShow.filter(note => {
+					let strValue = '';
+					switch (note.settings.noteType) {
+						case 'text':
+							strValue = note.data.text;
+							break;
+						case 'image':
+						case 'video':
+						case 'audio':
+							strValue = note.data.src;
+							break;
+						case 'list':
+							strValue = note.data.list.map(list => list.text).join(',');
+							break;
+					}
+					return strValue.includes(searchTerm);
+				})
+			}
+
 			return notesToShow;
 		}
 	}

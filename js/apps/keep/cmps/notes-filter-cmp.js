@@ -1,31 +1,36 @@
-export default {
-	props: ['noteTypes'],
-	template: `
-		<section class="note-filter flex justify-content-center" style="padding-bottom: 2em">
+import { eventBus, EVENT_NOTE_FILTERED } from '../../../services/eventbus-service.js'
 
-			<div class="flex justify-content-center">
-				Filter by: &nbsp;&nbsp;
-				<template v-for="(noteType, idx) in noteTypes">
-					<i :class="setSelectedFilter(idx, noteType.icon)" @click="updateFilter(idx)"></i> &nbsp;&nbsp;
-				</template>
+export default {
+	template: `
+		<section class="search notes-filter flex justify-content-center">
+
+			<div>
+				<button class="fas fa-search" @click="updateFilter"></button>
+				<input v-model="filter.txt" type="search" placeholder="Search notes" @input="updateFilter">
 			</div>
+
+			<select v-model="filter.type" @change="updateFilter">
+				<option value="">All</option>
+				<option value="text">Text</option>
+				<option value="image">Image</option>
+				<option value="video">Video</option>
+				<option value="audio">Audio</option>
+				<option value="list">List</option>
+			</select>				
 
 		</section>
 	`,
 	data() {
 		return {
-			filterBy: ''
+			filter: {
+				txt: '',
+				type: ''
+			},
 		}
 	},
 	methods: {
-		setSelectedFilter(type, noteIcon) {
-			return (this.filterBy.includes(type))
-				? noteIcon + ' fa-lg selected'
-				: noteIcon + ' fa-lg';
-		},
-		updateFilter(sortByType) {
-			this.filterBy = (this.filterBy === sortByType) ? '' : sortByType;
-			this.$emit('filtered', this.filterBy);
+		updateFilter() {
+			eventBus.$emit(EVENT_NOTE_FILTERED, this.filter);
 		},
 	}
 }
