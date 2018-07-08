@@ -73,7 +73,7 @@ export default {
 				{ value: '#aaffee', name: 'turquoise' },
 				{ value: '#88ddff', name: 'sky' },
 				{ value: '#88bbff', name: 'blue' },
-				{ value: '#bb88ff', name: 'purple' },
+				{ value: '#ddbbff', name: 'purple' },
 				{ value: '#dddddd', name: 'grey' },
 			]
 		}
