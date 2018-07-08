@@ -1,11 +1,12 @@
 import notesService from '../services/notes-service.js';
 import {
-	eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED, 
-	EVENT_NOTE_STYLED, EVENT_NOTE_EDITING, EVENT_NOTE_UPDATED, 
+	eventBus, EVENT_NOTE_ADDED, EVENT_NOTE_PINNED, EVENT_NOTE_MARKED,
+	EVENT_NOTE_STYLED, EVENT_NOTE_EDITING, EVENT_NOTE_UPDATED,
 	EVENT_NOTE_CLONED, EVENT_NOTE_DELETED, EVENT_LIST_NOTE_STATUS_CHANGED
 } from '../../../services/eventbus-service.js'
 
 import notesAdd from '../cmps/notes-add-cmp.js';
+import notesFilter from '../cmps/notes-filter-cmp.js';
 import notesList from '../cmps/notes-list-cmp.js';
 
 export default {
@@ -13,12 +14,12 @@ export default {
 		<section class="notes-app">
 
 			<notes-add :noteTypes="noteTypes"></notes-add>
-
-			<notes-list :noteCmps="noteCmps" :noteTypes="noteTypes"></notes-list>
+			<notes-filter :noteTypes="noteTypes" @filtered="updateFilter"></notes-filter>
+			<notes-list :noteCmps="notesToShow" :noteTypes="noteTypes"></notes-list>
 
 		</section>
 	`,
-	components: { notesAdd, notesList },
+	components: { notesAdd, notesFilter, notesList },
 	data() {
 		return {
 			noteTypes: {
@@ -29,6 +30,7 @@ export default {
 				list: { field: 'text', icon: 'fas fa-list', placeholder: 'Enter comma separated list...' },
 			},
 			noteCmps: null,
+			filterBy: '',
 		}
 	},
 	created() {
@@ -72,5 +74,17 @@ export default {
 		updateListNoteStatus(noteId, listIdx) {
 			notesService.updateListNoteStatus(noteId, listIdx);
 		},
+		updateFilter(newFilter) {
+			this.filterBy = newFilter;
+		}
+	},
+	computed: {
+		notesToShow() {
+			let notesToShow = this.noteCmps;
+			if (this.filterBy) {
+				notesToShow = notesToShow.filter(note => this.filterBy.includes(note.settings.noteType));
+			}
+			return notesToShow;
+		}
 	}
 }
