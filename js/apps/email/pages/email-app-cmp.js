@@ -125,6 +125,8 @@ export default {
 				.then(() => { this.isCompose = false })
 		},
 		goToInbox() {
+			this.isFullScreen= false,
+
 			this.isCompose = false;
 			this.selectedEmail = null;
 			this.filter = null;
